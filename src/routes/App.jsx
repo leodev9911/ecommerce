@@ -1,27 +1,20 @@
-// import { Layout } from '../containers/Layout';
-// import { Login } from '../containers/Login';
-// import { EmailPassword } from '../containers/EmailPassword';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { Layout } from '../containers/Layout';
+import { Login } from '../containers/Login';
+import { EmailPassword } from '../containers/EmailPassword';
+import { Route, Routes } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element:<Home/>,
-  },
-  {
-    path: "../pages/NotFound:errorId",
-    element: <NotFound/>
-  }
-])
-
 function App() {
   return (
-    <RouterProvider router={router}/>
+    <Layout>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path="*" element={<NotFound/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/email-password'element={<EmailPassword/>}/>
+      </Routes>
+    </Layout>
   )
 }
 

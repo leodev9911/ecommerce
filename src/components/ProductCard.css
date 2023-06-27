@@ -1,0 +1,45 @@
+.card-below__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.card-text__container .roboto-text {
+    margin-bottom: 3px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+}
+.card-text__container p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #797979;
+}
+.card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+.car-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+@media (min-width: 720px) {
+    .card-text__container .roboto-text {
+        font-size: 1.6rem;
+    }
+    .card-text__container p {
+        font-size: 1.4rem;
+    }
+    .card img {
+        width: 240px;
+        height: 240px;
+        object-fit: cover;
+    }
+    .car-icon img {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,28 @@
+.card-container-aside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 410px;
+    height: 85px;
+    margin-bottom: 15px;
+}
+.card-container-aside .left-card__container, .right-card__container {
+    display: flex;
+    align-items: center;
+}
+.card-container-aside figure img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+.card-container-aside .close-icon img {
+    width: 12px;
+    height: 12px;
+}
+.card-container-aside .articles {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #797979;
+    margin-left: 20px;
+}

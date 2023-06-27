@@ -1,0 +1,55 @@
+.mobile-menu__container {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    max-width: 350px;
+    height: 670px;
+    padding: 0px 40px 0px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 6px rgba(0, 0, 0, 0.119789);
+    background-color: var(--white);
+    z-index: 1;
+}
+.first-list__container, .second-list__container, .third-list__container {            
+    list-style: none;
+}
+.first-list__container {
+    padding-bottom: 40px;
+}
+.first-list__container li {
+    margin-top: 30px;
+}
+.second-list__container {
+    border-top: 1px solid #979797;
+}
+.second-list__container li {
+    margin-top: 40px;
+}
+.third-list__container {
+    padding-top: 80px;
+}
+.third-list__container li {
+    margin-bottom: 5px;
+}
+.mobile-menu__container ul li {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000000;
+}
+.mobile-menu__container ul li a {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+.third-list__container .email-text {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #000000;
+}
+.mobile-menu__container .third-list__container .green-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--hospital-green);
+}

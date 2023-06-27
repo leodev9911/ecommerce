@@ -1,0 +1,75 @@
+.shopping-cart__container {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+    padding: 25px 0px 20px 0px;
+    box-shadow: 0px 0px 15px 6px rgba(0, 0, 0, 0.119789);
+    border-radius: 10px 0px 10px 10px;
+    background-color: var(--white);
+    z-index: 1;
+}
+.title__container {
+    display: none;
+}
+.shopping-cart__container p {
+    margin-right: 15px;
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+.cart-button__container {
+    width: 90%;
+}
+.shopping-cart__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    background-color: var(--hospital-green);
+    border: 1px solid #ACD9B2;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    line-height: 2.2rem;
+    color: var(--white);
+}
+@media (min-width: 1024px) {
+    .shopping-cart__container {
+        top: 60px;
+    }    
+    .title__container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0px 25px 20px 25px;
+    }
+    .title__container h1 {
+        margin-left: 25px;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }   
+    .card-text__container .roboto-text {
+        font-size: 1.6rem;
+    }
+    .card-text__container p {
+        font-size: 1.4rem;
+    }
+    .card img {
+        width: 240px;
+        height: 240px;
+        object-fit: cover;
+    }
+    .car-icon img {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
+}

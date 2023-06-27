@@ -1,0 +1,118 @@
+.nav__container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: auto 1fr auto;
+    height: 46px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
+}
+.file-icon__container {
+    padding-left: 20px;
+}
+.file-icon__container img {
+    width: 23px;
+    height: 18px;
+    object-fit: cover;
+}
+.logo-nav__container img {
+    width: 95px;
+    height: 20px;
+    object-fit: cover;
+}
+.nav-left__container {
+    display: none;
+}
+.nav-right__container {
+    padding-right: 19px;
+}
+.nav-right__container img {
+    width: 23px;
+    height: 23px;
+}
+.nav-right__container p, .arrow-down {
+    display: none;
+} 
+.shop-car__container {
+    position: relative;
+}
+.nav-right__container li {
+    display: flex;
+    align-items: center;
+} 
+.nav-right__container .shop-car__container span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -3px;
+    right: -4px;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background-color: var(--hospital-green);
+}      
+@media (min-width: 720px) {
+    .nav__container {
+        height: 55px;
+        padding: 0px 0px 0px 50px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
+    }
+    .nav__container li {
+        list-style: none;
+    }
+    .file-icon__container {
+        display: none;
+    }
+    .nav__container .logo-nav__container {
+        margin: 15px 55px 15px 0px;
+    }
+    .nav__container .logo-nav__container img {
+        width: 145px;
+        height: 30px;
+        object-fit: cover;
+    }
+    .nav-right__container {
+        padding-right: 50px;
+    }
+    .nav-left__container {
+        display: flex;
+        align-items: center;
+    }
+    .nav-left__container li a {
+        margin-left: 20px;
+        border: 1px solid var(--white);
+        padding: 5px;
+        border-radius: 10px;
+    }
+    .nav-left__container a {
+        text-decoration: none;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #C7C7C7;
+        font-family: "Quicksand", sans-serif;
+    }
+    .nav__container .nav-left__container li a:hover {
+        border: 1px solid var(--hospital-green);
+        color: var(--hospital-green);
+    }
+    .nav-right__container {
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+    }
+    .nav-right__container p {
+        display: block;
+        margin-right: 10px;
+        font-size: 1.4rem;
+        font-weight: 300;
+    }
+    .nav-right__container .arrow-down {
+        display: block;
+        width: 14px;
+        height: 8px;
+        margin-top: 5px;
+        margin-right: 25px;
+    }
+}

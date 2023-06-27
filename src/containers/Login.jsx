@@ -1,28 +1,22 @@
-// import React from "react"
-import './Login.css'; 
-
 export const Login = () => {
     return (
-        <section className="new-password">
-            <figure className="new-password__image-container">
-                <img src="../assets/img/logo_yard_sale.svg" alt="Logo yard sale"/>
+        <section className="login">
+            <figure className="login__image-container">
+                <img src="./assets/img/logo_yard_sale.svg" alt="Logo yard sale"/>
             </figure>
-            <div className="new-password__text-container">
-                <h1 className="form__h1">Create a new password</h1>
-                <p>Enter a new password for your account</p>
-            </div>
-            <div className="new-password__form-container">
-                <form action="#" className="new-password__form">
-                    <label htmlFor="new-password" className="new-password__label">Password</label>
-                    <input type="password" id="new-password" placeholder="*********" className="input__new-password"/>
+            <div className="login__form-container">
+                <form action="#" className="login__form">
+                    <label htmlFor="email" className="login__label">Email adress</label>
+                    <input type="text" id="email" placeholder="email@example.com" className="input__login"/>
 
-                    <label htmlFor="reenter-password" className="new-password__label">Re-enter password</label>
-                    <input type="password" id="reenter-password" placeholder="*********" className="input__new-password"/>
+                    <label htmlFor="login-password" className="login__label">Password</label>
+                    <input type="password" id="login-password" placeholder="*********" className="input__login"/>
 
-                    <input type="submit" value="Confirm" className="new-password__button"/>
+                    <input type="submit" value="Log in" className="login__button"/>
+                    <a href="">Forgot my password</a>
                 </form>
             </div>
+            <button className="signup__button">Sign up</button>
         </section>
     )
 }
-

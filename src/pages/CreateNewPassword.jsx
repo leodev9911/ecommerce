@@ -1,12 +1,13 @@
 // import React from "react"
-import './CreateNewPassword.css'; 
+import './CreateNewPassword.css'
+import { Logo } from '../components/Logo'
+
+const classN = 'new-password__image-container'
 
 export const CreateNewPassword = () => {
     return (
         <section className="new-password">
-            <figure className="new-password__image-container">
-                <img src="../assets/img/logo_yard_sale.svg" alt="Logo yard sale"/>
-            </figure>
+            <Logo classN={classN} />
             <div className="new-password__text-container">
                 <h1 className="form__h1">Create a new password</h1>
                 <p>Enter a new password for your account</p>

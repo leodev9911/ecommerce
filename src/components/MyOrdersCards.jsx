@@ -1,4 +1,5 @@
 import './MyOrdersCards'
+import path from '../assets/icons/path.svg'
 
 export const MyOrdersCards = () => {
     return (
@@ -9,7 +10,7 @@ export const MyOrdersCards = () => {
             </div>
             <div className="right-text__container">
                 <p>160.00</p>
-                <img src="./assets/icons/path.svg" alt=""/>
+                <img src={path} alt=""/>
             </div>
         </article>
     )

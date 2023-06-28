@@ -1,3 +1,5 @@
+import './MyAccount.css'
+
 export const MyAccount = () => {
     return (
         <section className="my-account">

@@ -1,11 +1,12 @@
 import './Login.css'
+import { Logo } from '../components/Logo'
+
+const classN = 'login__image-container'
 
 export const Login = () => {
     return (
         <section className="login">
-            <figure className="login__image-container">
-                <img src="./assets/img/logo_yard_sale.svg" alt="Logo yard sale"/>
-            </figure>
+            <Logo classN={classN}/>
             <div className="login__form-container">
                 <form action="#" className="login__form">
                     <label htmlFor="email" className="login__label">Email adress</label>

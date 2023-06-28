@@ -1,14 +1,18 @@
 import './Header.css'
+import iconList from '../assets/icons/list.svg'
+import arrowDown from '../assets/icons/arrow-down.svg'
+import shape from '../assets/icons/shape.svg'
+import { Logo } from './Logo'
+
+const classN = 'logo-nav__container'
 
 export const Header = () => {
     return (
         <nav className="nav__container">
             <figure className="file-icon__container">
-                <img src="./assets/icons/list.svg" alt="" />
+                <img src={iconList} alt="" />
             </figure>
-            <figure className="logo-nav__container">
-                <img src="./assets/img/logo_yard_sale.svg" alt="" />
-            </figure>
+            <Logo classN={classN} />
             <ul className="nav-left__container">
                 <li className=".green-list__item"><a href="" className="green-list__item-a">All</a></li>
                 <li><a href="">Clothes</a></li>
@@ -20,10 +24,10 @@ export const Header = () => {
             <div className="nav-right__container">
                 <li>
                     <p>leonardo@gmail.com</p>
-                    <img src="./assets/icons/arrow-down.svg" alt="" className="arrow-down" />
+                    <img src={arrowDown} alt="" className="arrow-down" />
                 </li>
                 <li className="shop-car__container">
-                    <img src="./assets/icons/shape.svg" alt="" />
+                    <img src={shape} alt="" />
                     <span>2</span>
                 </li>
             </div>

@@ -1,11 +1,12 @@
 import './PasswordRecovery.css'
+import { Logo } from '../components/Logo'
+
+const classN = 'email-password__image-container'
 
 export const PasswordRecovery = () => {
     return (
         <section className="email-password">
-            <figure className="email-password__image-container">
-                <img src="../assets/img/logo_yard_sale.svg" alt="Logo yard sale"/>
-            </figure>
+            <Logo classN={classN}/>
             <div className="email__text-container">
                 <h1 className="email-password__h1">Password recovery</h1>
                 <p>Inform the email addres used to create your account</p>

@@ -1,11 +1,12 @@
 import './ShoppingCartAside.css'
+import backArrow from '../assets/icons/back-arrow.svg'
 
 export const ShoppingCartAside = ({ children }) => {
     return (
         <aside className="shopping-cart__container inactive">
             <div className="title__container">
                 <figure>
-                    <img src="./assets/icons/back-arrow.svg" alt=""/>
+                    <img src={backArrow} alt=""/>
                 </figure>
                 <h1>Shopping cart</h1>
             </div>

@@ -1,4 +1,5 @@
-import './ProductInfo.css';
+import './ProductInfo.css'
+import whiteCart from '../assets/icons/white-cart.svg'
 
 export const ProductInfo = () => {
     return (
@@ -8,7 +9,7 @@ export const ProductInfo = () => {
             <p className="detail-p">With its functional and practical interior, this refrigerator also fulfills a decorative function, adding personality and a retro-vintage aesthetic to your kitchen or workplace.</p>
             <button className="product-detail__button">
                 <figure>
-                    <img src="./assets/icons/white-cart.svg" alt=""/>
+                    <img src={whiteCart} alt=""/>
                 </figure>
                 Add to cart
             </button>

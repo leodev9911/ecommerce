@@ -9,6 +9,13 @@
 .my-order__container h1 {
     display: none;
 }
+.my-order__container p {
+    margin-right: 15px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000000;
+    margin-right: 25px;
+}
 @media (min-width: 720px) {
     .my-order__container h1 {
         display: block;

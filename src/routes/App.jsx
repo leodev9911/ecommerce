@@ -1,12 +1,15 @@
 import { Layout } from '../containers/Layout';
-import { EmailPassword } from '../containers/EmailPassword';
+import { EmailPassword } from '../pages/EmailPassword';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
-import { CreateNewPassword } from '../containers/CreateNewPassword';
-import { Login } from '../containers/Login';
-import { PasswordRecovery } from '../containers/PasswordRecovery';
-import { CreateAccount } from '../containers/CreateAccount';
+import { CreateNewPassword } from '../pages/CreateNewPassword';
+import { Login } from '../pages/Login';
+import { PasswordRecovery } from '../pages/PasswordRecovery';
+import { CreateAccount } from '../pages/CreateAccount';
+import { MyAccount } from '../pages/MyAccount';
+import { MyOrders } from '../pages/MyOrders';
+
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
         <Route path='/Login' element={<Login/>}/>
         <Route path='/Password-recovery' element={<PasswordRecovery/>}/>
         <Route path='/Create-account' element={<CreateAccount/>}/>
+        <Route path='/My-account' element={<MyAccount/>}/>
+        <Route path='/My-orders' element={<MyOrders/>}/>
       </Routes>
     </Layout>
   )

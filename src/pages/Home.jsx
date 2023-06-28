@@ -1,11 +1,11 @@
 import { DropdownMenu } from "../components/DropdownMenu";
 import { Header } from "../components/Header";
 import { ProductCard } from "../components/ProdcutCard";
-import { ProductDetail } from "../components/ProductDetail";
+import { ProductDetail } from "../containers/ProductDetail";
 import { ProductCardSection } from "../containers/ProductCardSection";
-import { ShoppingCartAside } from "../containers/ShoppingCartAside";
-import { ShoppingCartProductCard } from "../components/ShoppingCartProductCard"
-import { TotalCardShoppingCart } from "../components/TotalCardShoppingCart"
+// import { ShoppingCartAside } from "../containers/ShoppingCartAside";
+// import { ShoppingCartProductCard } from "../components/ShoppingCartProductCard"
+// import { TotalCardShoppingCart } from "../components/TotalCardShoppingCart"
 import { MobileMenuContainer } from "../containers/MobileMenuContainer";
 
 export const Home = () => {
@@ -23,12 +23,12 @@ export const Home = () => {
                     <ProductCard/>
                     <ProductDetail/>
                     <DropdownMenu/>
-                    <ShoppingCartAside>
+                    {/* <ShoppingCartAside>
                         <ShoppingCartProductCard/>
                         <ShoppingCartProductCard/>
                         <ShoppingCartProductCard/>
                         <TotalCardShoppingCart/>
-                    </ShoppingCartAside>
+                    </ShoppingCartAside> */}
                 </ProductCardSection>
             </main>
         </section>

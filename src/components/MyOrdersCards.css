@@ -24,10 +24,3 @@
     display: flex;
     align-items: center;
 }
-.my-order__container p {
-    margin-right: 15px;
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #000000;
-    margin-right: 25px;
-}

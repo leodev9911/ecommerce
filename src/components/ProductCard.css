@@ -19,6 +19,10 @@
     width: 140px;
     height: 140px;
     object-fit: cover;
+    cursor: pointer;
+}
+.car-icon:hover {
+    cursor: pointer;
 }
 .car-icon img {
     width: 30px;

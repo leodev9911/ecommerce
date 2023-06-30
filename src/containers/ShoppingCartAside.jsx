@@ -3,7 +3,7 @@ import backArrow from '../assets/icons/back-arrow.svg'
 
 export const ShoppingCartAside = ({ children }) => {
     return (
-        <aside className="shopping-cart__container inactive">
+        <aside className="shopping-cart__container">
             <div className="title__container">
                 <figure>
                     <img src={backArrow} alt=""/>

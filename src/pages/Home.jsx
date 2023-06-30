@@ -15,7 +15,8 @@ export const Home = () => {
         openProductDetail,
         openDropdownMenu,
         openMobileMenu,
-        openShoppingCart
+        openShoppingCart,
+        products
     } = React.useContext(AppContext)
 
     return (
@@ -26,10 +27,7 @@ export const Home = () => {
             </header>
             <main>
                 <ProductCardSection>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
+                    <ProductCard products={products}/>
                     {openProductDetail ? (<ProductDetail/>) : null}
                     {openDropdownMenu ? (<DropdownMenu/>) : null}
                     {openShoppingCart ? (<ShoppingCartAside>

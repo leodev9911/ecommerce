@@ -8,7 +8,18 @@ const AppProvider = ({ children }) => {
     const [openDropdownMenu, setOpenDropdownMenu] = React.useState(false)
     const [openMobileMenu, setOpenMobileMenu] = React.useState(false)
     const [openShoppingCart, setOpenShoppingCart] = React.useState(false)
+
+    const API = 'https://api.escuelajs.co/api/v1/products'
+    const [products, setProducts] = React.useState([])
  
+    React.useEffect(() => {
+        fetch(API)
+            .then(response => response.json())
+            .then(response => {
+                setProducts(response)
+            })
+            .catch(err => console.error(err))
+    }, [])
 
     const handleAddToCart = () => {
         setCart('hola')
@@ -26,7 +37,9 @@ const AppProvider = ({ children }) => {
             openMobileMenu,
             setOpenMobileMenu,
             openShoppingCart,
-            setOpenShoppingCart
+            setOpenShoppingCart,
+            products,
+            setProducts
         }}>
             {children}
         </AppContext.Provider>

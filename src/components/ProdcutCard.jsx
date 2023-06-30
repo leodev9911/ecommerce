@@ -1,5 +1,5 @@
 import './ProductCard.css'
-import fridge from '../assets/img/fridge.png'
+// import fridge from '../assets/img/fridge.png'
 import iconAddToCart from '../assets/icons/bt_add_to_cart.svg'
 import React from 'react'
 import { AppContext } from '../logic/AppContext'
@@ -10,12 +10,14 @@ export const ProductCard = () => {
         setOpenProductDetail,
         setOpenDropdownMenu,
         setOpenMobileMenu,
-        setOpenShoppingCart
+        setOpenShoppingCart,
+        products
      } = React.useContext(AppContext)
 
-    return (        
-            <article className="card">
-                <img src={fridge} alt="" onClick={() => {
+    return (
+        products.slice(0, 20).map(product => (
+            <article className="card" key={product.id}>
+                <img src={product.category.image} alt={product.title} onClick={() => {
                     setOpenProductDetail(openProductDetail => !openProductDetail)
                     setOpenDropdownMenu(false)
                     setOpenMobileMenu(false)
@@ -23,13 +25,14 @@ export const ProductCard = () => {
                 }}/>
                 <div className="card-below__container">
                     <div className="card-text__container">
-                        <p className="roboto-text">$ 120,00</p>
-                        <p>Retro refrigerator</p>
+                        <p className="roboto-text">${product.price}</p>
+                        <p>{product.title}</p>
                     </div>
                     <figure className="car-icon" onClick={handleAddToCart}>
                         <img src={iconAddToCart} alt=""/>
                     </figure>
                 </div>
             </article>
+        ))
     )
 }

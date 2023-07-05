@@ -13,7 +13,8 @@ export const Header = () => {
         setOpenDropdownMenu,
         setOpenMobileMenu,
         setOpenProductDetail,
-        setOpenShoppingCart
+        setOpenShoppingCart,
+        cart
     } = React.useContext(AppContext)
 
     return (
@@ -48,7 +49,7 @@ export const Header = () => {
                     setOpenDropdownMenu(false)
                 }}>
                     <img src={shape} alt="" />
-                    <span>2</span>
+                    {cart.length > 0 ? <span>{cart.length}</span> : null}
                 </li>
             </div>
         </nav>

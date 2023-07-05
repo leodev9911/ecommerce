@@ -14,6 +14,10 @@ export const ProductCard = () => {
         products
      } = React.useContext(AppContext)
 
+     const handleClick = item => {
+        handleAddToCart(item)
+     }
+
     return (
         products.slice(0, 20).map(product => (
             <article className="card" key={product.id}>
@@ -28,7 +32,7 @@ export const ProductCard = () => {
                         <p className="roboto-text">${product.price}</p>
                         <p>{product.title}</p>
                     </div>
-                    <figure className="car-icon" onClick={handleAddToCart}>
+                    <figure className="car-icon" onClick={() => handleClick(product)}>
                         <img src={iconAddToCart} alt=""/>
                     </figure>
                 </div>

@@ -53,6 +53,7 @@
     font-weight: 700;
     line-height: 2.2rem;
     color: white;
+    cursor: pointer;
 }
 .login__form-container a {
     margin: 0 auto;
@@ -79,6 +80,7 @@
     font-weight: 700;
     line-height: 2.2rem;
     color: var(--hospital-green);
+    cursor: pointer;
 }
 @media (min-width: 720px) {
     .login__image-container {

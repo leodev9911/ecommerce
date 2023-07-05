@@ -3,7 +3,7 @@ import React from "react"
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-    const [cart, setCart] = React.useState('')
+    const [cart, setCart] = React.useState([])
     const [openProductDetail, setOpenProductDetail] = React.useState(false)
     const [openDropdownMenu, setOpenDropdownMenu] = React.useState(false)
     const [openMobileMenu, setOpenMobileMenu] = React.useState(false)
@@ -21,9 +21,12 @@ const AppProvider = ({ children }) => {
             .catch(err => console.error(err))
     }, [])
 
-    const handleAddToCart = () => {
-        setCart('hola')
+    const handleAddToCart = (payload) => {
+        const newCart = [...cart, payload]
+        setCart(newCart)
     }
+
+    console.log(cart)
 
     return(
         <AppContext.Provider value={{

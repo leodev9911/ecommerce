@@ -14,6 +14,8 @@
     font-size: 1.2rem;
     font-weight: 300;
     color: #797979;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 .card img {
     width: 140px;

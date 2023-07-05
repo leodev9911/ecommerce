@@ -35,6 +35,7 @@
     font-weight: 700;
     line-height: 2.2rem;
     color: var(--white);
+    cursor: pointer;
 }
 .product-detail__button figure {
     margin-right: 10px;

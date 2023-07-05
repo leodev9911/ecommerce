@@ -45,6 +45,9 @@
     .shopping-cart__container {
         top: 60px;
     }    
+    .shopping-cart__container img {
+        cursor: pointer;
+    }    
     .title__container {
         display: flex;
         align-items: center;

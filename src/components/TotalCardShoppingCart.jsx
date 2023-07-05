@@ -7,13 +7,7 @@ export const TotalCardShoppingCart = () => {
         cart
     } = React.useContext(AppContext)
 
-    const price = cart.map(car => {
-        return car.price
-    })
-
-    console.log(price)
-
-    const totalPrice = price.reduce((acumulator, number) => acumulator + number, 0)
+    const totalPrice = cart.reduce((acumulator, car) => acumulator + car.price, 0)
 
     return (
         <article className="total-card__container">

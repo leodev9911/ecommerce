@@ -7,11 +7,8 @@ import { AppContext } from '../logic/AppContext'
 export const ProductCard = () => {
     const { 
         handleAddToCart,
-        setOpenProductDetail,
-        setOpenDropdownMenu,
-        setOpenMobileMenu,
-        setOpenShoppingCart,
-        products
+        products,
+        showProductDetail
      } = React.useContext(AppContext)
 
      const handleClick = item => {
@@ -21,12 +18,7 @@ export const ProductCard = () => {
     return (
         products.slice(0, 20).map(product => (
             <article className="card" key={product.id}>
-                <img src={product.category.image} alt={product.title} onClick={() => {
-                    setOpenProductDetail(openProductDetail => !openProductDetail)
-                    setOpenDropdownMenu(false)
-                    setOpenMobileMenu(false)
-                    setOpenShoppingCart(false)
-                }}/>
+                <img src={product.image} alt={product.title} onClick={() => showProductDetail(product.id)}/>
                 <div className="card-below__container">
                     <div className="card-text__container">
                         <p className="roboto-text">${product.price}</p>

@@ -25,6 +25,14 @@ const AppProvider = ({ children }) => {
         const newCart = [...cart, payload]
         setCart(newCart)
     }
+    const deleteProductCart = () => {
+        const deleteProductCart = [...cart]
+        const indexProductCart = deleteProductCart.findIndex(
+            product => product.id === product.id
+        )
+        deleteProductCart.splice(indexProductCart, 1)
+        setCart(deleteProductCart)
+    }
 
     console.log(cart)
 
@@ -42,7 +50,8 @@ const AppProvider = ({ children }) => {
             openShoppingCart,
             setOpenShoppingCart,
             products,
-            setProducts
+            setProducts,
+            deleteProductCart
         }}>
             {children}
         </AppContext.Provider>

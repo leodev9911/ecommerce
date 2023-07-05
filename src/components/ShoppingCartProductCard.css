@@ -19,6 +19,7 @@
 .card-container-aside .close-icon img {
     width: 12px;
     height: 12px;
+    cursor: pointer;
 }
 .card-container-aside .articles {
     font-size: 1.4rem;

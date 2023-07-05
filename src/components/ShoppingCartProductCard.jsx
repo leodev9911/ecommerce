@@ -6,7 +6,8 @@ import closeIcon from '../assets/icons/close-icon.svg'
 
 export const ShoppingCartProductCard = () => {
     const {
-        cart
+        cart,
+        deleteProductCart
     } = React.useContext(AppContext)
     return (
         cart.map(car => (
@@ -20,7 +21,7 @@ export const ShoppingCartProductCard = () => {
                 <div className="right-card__container">
                     <p>${car.price}</p>
                     <figure className="close-icon">
-                        <img src={closeIcon} alt=""/>
+                        <img src={closeIcon} alt="" onClick={deleteProductCart}/>
                     </figure>
                 </div>
             </article>

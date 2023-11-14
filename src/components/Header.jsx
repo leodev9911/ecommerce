@@ -3,20 +3,16 @@ import iconList from '../assets/icons/list.svg'
 import arrowDown from '../assets/icons/arrow-down.svg'
 import shape from '../assets/icons/shape.svg'
 import { Logo } from './Logo'
-import { AppContext } from '../logic/AppContext'
-import React from 'react'
 
 const classN = 'logo-nav__container'
 
-export const Header = () => {
-    const {
-        setOpenDropdownMenu,
-        setOpenMobileMenu,
-        setOpenProductDetail,
-        setOpenShoppingCart,
-        cart
-    } = React.useContext(AppContext)
-
+export const Header = ({ 
+    setOpenDropdownMenu,
+    setOpenMobileMenu,
+    setOpenProductDetail,
+    setOpenShoppingCart,
+    cart
+ }) => {
     return (
         <nav className="nav__container">
             <figure className="file-icon__container">

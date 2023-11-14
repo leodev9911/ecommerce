@@ -1,15 +1,14 @@
 import './ProductInfo.css'
 import whiteCart from '../assets/icons/white-cart.svg'
 import React from 'react'
-import { AppContext } from '../logic/AppContext'
+import { AppContext } from '../context/AppContext'
 
 export const ProductInfo = () => {
     const {
         productDetail,
         handleAddToCart
     } = React.useContext(AppContext)
-
-    
+  
     const handleClick = item => {
         handleAddToCart(item)
     }

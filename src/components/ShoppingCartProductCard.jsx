@@ -1,21 +1,17 @@
 import './ShoppingCartProductCard.css'
-import React from 'react'
-import { AppContext } from '../logic/AppContext'
 import closeIcon from '../assets/icons/close-icon.svg'
-// import roundShelf from '../assets/img/round_shelf.png'
 
-export const ShoppingCartProductCard = () => {
-    const {
-        cart,
-        deleteProductCart, 
-    } = React.useContext(AppContext)
+export const ShoppingCartProductCard = ({ 
+    cart,
+    deleteProductCart
+ }) => {
 
     return (
         cart.map((car, index) => (
             <article className="card-container-aside" key={index}>
                 <div className="left-card__container">
                     <figure>
-                        <img src={car.image} alt={car.title}/>
+                        <img src={car.images[0]} alt={car.title}/>
                     </figure>
                     <span className="articles">{car.title}</span>
                 </div>

@@ -1,15 +1,12 @@
 import { ProductInfo } from '../components/ProductInfo'
 import './ProductDetail.css'
 import closeIcon from '../assets/icons/close-icon.svg'
-// import fridge from '../assets/img/fridge.jpg'
-import React from 'react'
-import { AppContext } from '../logic/AppContext'
 
-export const ProductDetail = () => {
-    const { 
-        setOpenProductDetail,
-        productDetail
-     } = React.useContext(AppContext)
+export const ProductDetail = ({ 
+    setOpenProductDetail,
+    productDetail
+ }) => {
+    
     return (
         <aside className="product-detail__container">
             <figure className="close-icon" onClick={() => {
@@ -18,9 +15,9 @@ export const ProductDetail = () => {
                 <img src={closeIcon} alt="A close icon"/>
             </figure>
             <figure className="product-image">
-                <img src={productDetail.image} alt={productDetail.title}/>
+                <img src={productDetail.images[0]} alt={productDetail.title}/>
             </figure> 
-            <ProductInfo/>
+            <ProductInfo />
         </aside>
     )
 }

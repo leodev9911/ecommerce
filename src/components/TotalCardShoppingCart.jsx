@@ -1,11 +1,6 @@
 import './TotalCardShoppingCart.css'
-import { AppContext } from '../logic/AppContext'
-import React from 'react'
 
-export const TotalCardShoppingCart = () => {
-    const {
-        cart
-    } = React.useContext(AppContext)
+export const TotalCardShoppingCart = ({ cart }) => {
 
     const totalPrice = cart.reduce((acumulator, car) => acumulator + car.price, 0)
 

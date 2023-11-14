@@ -1,6 +1,6 @@
 import './ShoppingCartAside.css'
 import backArrow from '../assets/icons/back-arrow.svg'
-import { AppContext } from '../logic/AppContext'
+import { AppContext } from '../context/AppContext'
 import React from 'react'
 
 export const ShoppingCartAside = ({ children }) => {

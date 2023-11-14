@@ -13,7 +13,6 @@ export const Login = () => {
             username: formData.get('email'),
             password: formData.get('login-password')
         }
-        console.log(data)
     }
 
     return (

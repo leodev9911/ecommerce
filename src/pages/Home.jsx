@@ -10,6 +10,7 @@ import { TotalCardShoppingCart } from "../components/TotalCardShoppingCart"
 import { MobileMenuContainer } from "../containers/MobileMenuContainer"
 import { AppContext } from "../context/AppContext"
 import { useProducts } from "../hooks/useProducts"
+import CreateProduct from "../components/CreateProduct"
 
 export const Home = () => {
     const {
@@ -44,7 +45,7 @@ export const Home = () => {
             </header>
             <main>
                 <ProductCardSection>
-                    {products.slice(0, 20).map(product => (
+                    {products.map(product => (
                         <ProductCard
                             key={product.id}
                             title={product.title} 
@@ -70,6 +71,7 @@ export const Home = () => {
                         </ShoppingCartAside>
                     ) : null}
                 </ProductCardSection>
+                <CreateProduct />
             </main>
         </section>
     )

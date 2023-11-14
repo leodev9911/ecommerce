@@ -13,6 +13,7 @@ export function useProducts () {
                     console.log(res.status)
                 } else {
                     const data = await res.json()
+                    console.log(data)
                     setProducts(data)
                 }
             } catch (error) {

@@ -54,8 +54,11 @@
     font-size: 0.8rem;
     font-weight: 700;
     background-color: var(--hospital-green);
+}
+.nav-right__container a {
+    display: none;
 }      
-@media (min-width: 720px) {
+@media (min-width: 900px) {
     .nav__container {
         height: 55px;
         padding: 0px 0px 0px 50px;
@@ -86,7 +89,8 @@
         margin-left: 20px;
         border: 1px solid var(--white);
         padding: 5px;
-        border-radius: 10px;
+        border-radius: 6px;
+        transition: 0.3s;
     }
     .nav-left__container a {
         text-decoration: none;
@@ -102,20 +106,39 @@
     .nav-right__container {
         display: flex;
         align-items: center;
+        gap: 20px;
         padding-left: 30px;
+    }
+    .nav-right__container a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 700;
+        width: 70px;
+        height: 24px;
+        background-color: red;
+        border: 1px solid red;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+    .nav-right__container a:hover {
+        background-color: transparent;
+        color: red;
     }
     .nav-right__container p {
         display: block;
-        margin-right: 10px;
         font-size: 1.4rem;
         font-weight: 300;
+        margin-right: 10px;
     }
     .nav-right__container .arrow-down {
         display: block;
         width: 14px;
         height: 8px;
         margin-top: 5px;
-        margin-right: 25px;
         cursor: pointer;
     }
 }

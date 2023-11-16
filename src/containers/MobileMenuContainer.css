@@ -48,8 +48,17 @@
     font-weight: 300;
     color: #000000;
 }
-.mobile-menu__container .third-list__container .green-text {
+.third-list__container .green-text {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--hospital-green);
+}
+.red-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: red;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif;
 }

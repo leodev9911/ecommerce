@@ -31,9 +31,13 @@
     font-weight: 700;
     color: #000000;
 }
-.dropdown__list li .green-anchor {
+.dropdown__list li .red-button {
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--hospital-green);
+    color: red;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif;
 } 

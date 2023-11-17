@@ -11,6 +11,7 @@ import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
 import { useProducts } from '../hooks/useProducts'
 import CreateProduct from '../components/CreateProduct'
+import { useAuth } from '../hooks/auth'
 
 export const Home = () => {
   const {
@@ -28,8 +29,9 @@ export const Home = () => {
     cart,
     deleteProductCart
   } = useContext(AppContext)
+  const { user } = useAuth()
 
-  const { products } = useProducts()
+  const { products } = useProducts(user)
 
   return (
     <section className='home'>

@@ -43,13 +43,21 @@
     font-weight: 700;
     margin-bottom: 5px;
 }
+.account__label.error {
+    display: flex;
+    justify-content: space-between;
+    color: red;
+}
 .input__account {
     height: 42px;
     margin-bottom: 35px;
     padding-left: 10px;
-    border: 1px solid #F7F7F7;
+    border: 2px solid #F7F7F7;
     background-color: #F7F7F7;
     border-radius: 10px;
+}
+.input__account.error {
+    border: 2px solid red;
 }
 .account-button__container {
     width: 90%;
@@ -70,6 +78,13 @@
     font-weight: 700;
     line-height: 2.2rem;
     color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.account__button:hover {
+    background-color: transparent;
+    color: var(--hospital-green);
+    border: 1px solid var(--hospital-green);
 }
 @media (min-width: 720px) {
     .account-button__container {

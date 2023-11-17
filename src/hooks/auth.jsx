@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
+import { useForms } from './useForms'
 
 const AuthContext = createContext()
 
@@ -15,25 +16,41 @@ export function AuthProvider ({ children }) {
     refreshTokenL: ''
   })
   const [formData, setFormData] = useState({
-    email: '',
-    loginPassword: ''
+    email: {
+      value1: '',
+      error: false,
+      errorMessage: ''
+    },
+    loginPassword: {
+      value1: '',
+      error: false,
+      errorMessage: ''
+    }
   })
-
-  console.log(tokens)
-
-  const handleChange = (event) => {
-    const { value, name } = event.target
-
-    setFormData(prev => {
-      return {
-        ...prev,
-        [name]: value
-      }
-    })
-  }
+  const { handleChange } = useForms(setFormData)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    let isOneEmpty = false
+
+    Object.keys(formData).forEach(input => {
+      console.log(Object.keys(formData))
+      if (formData[input].value1 === '') {
+        isOneEmpty = true
+        setFormData(prev => {
+          return {
+            ...prev,
+            [input]: {
+              value1: formData[input].value1,
+              error: true,
+              errorMessage: 'This field is recquired'
+            }
+          }
+        })
+      }
+    })
+
+    if (isOneEmpty) return
 
     try {
       const res = await fetch(LOGIN_URL, {
@@ -42,8 +59,8 @@ export function AuthProvider ({ children }) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: formData.email,
-          password: formData.loginPassword
+          email: formData.email.value1,
+          password: formData.loginPassword.value1
         })
       })
       const data = await res.json()
@@ -79,7 +96,8 @@ export function AuthProvider ({ children }) {
     user,
     handleChange,
     handleSubmit,
-    handleLogOut
+    handleLogOut,
+    formData
   }
 
   return (

@@ -1,9 +1,11 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { useForms } from './useForms'
 
 const AuthContext = createContext()
+
+// roles: admin, customer
 
 const LOGIN_URL = 'https://api.escuelajs.co/api/v1/auth/login'
 
@@ -34,7 +36,6 @@ export function AuthProvider ({ children }) {
     let isOneEmpty = false
 
     Object.keys(formData).forEach(input => {
-      console.log(Object.keys(formData))
       if (formData[input].value1 === '') {
         isOneEmpty = true
         setFormData(prev => {
@@ -77,10 +78,22 @@ export function AuthProvider ({ children }) {
           'Authorization': `Bearer ${data.access_token}`
         }
       })
-      const user = await getUser.json()
-      setUser(user)
-
-      if (user) navigate('/')
+      console.log(getUser)
+      if (getUser.status === 200) {
+        const userFromApi = await getUser.json()
+        setUser(userFromApi)
+      } else {
+        setFormData(prev => {
+          return {
+            ...prev,
+            email: {
+              value1: formData.email.value1,
+              error: true,
+              errorMessage: 'No accounts with this email'
+            }
+          }
+        })
+      }
     } catch (e) {
       console.log(e)
     }

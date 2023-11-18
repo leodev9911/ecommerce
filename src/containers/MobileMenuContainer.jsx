@@ -15,8 +15,8 @@ export const MobileMenuContainer = () => {
         <li><a href=''>Furnitures</a></li>
       </ul>
       <ul className='second-list__container'>
-        <li><a href=''>My orders</a></li>
-        <li><a href=''>My account</a></li>
+        {user && <li><a href=''>My orders</a></li>}
+        {user && <li><a href=''>My account</a></li>}
       </ul>
       <ul className='third-list__container'>
         {user && <li className='email-text'>{user.email}</li>}

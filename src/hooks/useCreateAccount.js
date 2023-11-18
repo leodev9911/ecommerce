@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
 export function useCreateAccount (formData, setFormData) {
-  const { navigate } = useNavigate()
   let isOneEmpty = false
+  const navigate = useNavigate()
 
   const handleSumbmitCreateAccount = async (event) => {
     event.preventDefault()

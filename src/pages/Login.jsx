@@ -1,11 +1,16 @@
 import './Login.css'
 import { Logo } from '../components/Logo'
 import { useAuth } from '../hooks/auth'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const classN = 'login__image-container'
 export const Login = () => {
   const { handleChange, handleSubmit, formData } = useAuth()
+  const { user } = useAuth()
+
+  if (user) {
+    return <Navigate to='/' />
+  }
 
   return (
     <section className='login'>

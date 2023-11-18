@@ -9,10 +9,8 @@ import { ShoppingCartProductCard } from '../components/ShoppingCartProductCard'
 import { TotalCardShoppingCart } from '../components/TotalCardShoppingCart'
 import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
-import { useProducts } from '../hooks/useProducts'
 import CreateProduct from '../components/CreateProduct'
 import { useAuth } from '../hooks/auth'
-
 export const Home = () => {
   const {
     openProductDetail,
@@ -27,11 +25,11 @@ export const Home = () => {
     setOpenProductDetail,
     setOpenShoppingCart,
     cart,
-    deleteProductCart
+    deleteProductCart,
+    products
   } = useContext(AppContext)
-  const { user } = useAuth()
 
-  const { products } = useProducts(user)
+  const { user } = useAuth()
 
   return (
     <section className='home'>
@@ -75,7 +73,7 @@ export const Home = () => {
               )
             : null}
         </ProductCardSection>
-        <CreateProduct />
+        {user?.role === 'admin' && <CreateProduct />}
       </main>
     </section>
   )

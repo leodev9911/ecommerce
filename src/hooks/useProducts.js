@@ -2,13 +2,10 @@ import { useState, useEffect } from 'react'
 
 const API_URL1 = 'https://api.escuelajs.co/api/v1/products'
 
-export function useProducts (user) {
+export function useProducts () {
   const [products, setProducts] = useState([])
-  console.log(user)
 
   useEffect(() => {
-    if (!user) return
-
     const fetchData = async () => {
       try {
         const res = await fetch(API_URL1)

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const API_URL1 = 'https://api.escuelajs.co/api/v1/products'
+const APIS_URL = 'http://localhost:1337/api'
+const GET_PRODUCTS = '/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
 
 export function useProducts () {
   const [products, setProducts] = useState([])
@@ -8,13 +9,13 @@ export function useProducts () {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(API_URL1)
+        const res = await fetch(APIS_URL + GET_PRODUCTS)
         if (res.status !== 200) {
           console.log(res.status)
         } else {
-          const data = await res.json()
-          console.log(data)
-          setProducts(data)
+          const products = await res.json()
+          setProducts(products.data)
+          console.log(products.data)
         }
       } catch (error) {
         console.error(error)

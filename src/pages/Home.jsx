@@ -47,11 +47,11 @@ export const Home = () => {
         <ProductCardSection>
           {products.map(product => (
             <ProductCard
-              key={product.id}
-              title={product.title}
-              id={product.id}
-              image={product.images[0]}
-              price={product.price}
+              key={product?.id}
+              title={product?.attributes.title}
+              id={product?.id}
+              image={product?.attributes.image.data.attributes.url}
+              price={product?.attributes.price}
               product={product}
               handleAddToCart={handleAddToCart}
               showProductDetail={showProductDetail}

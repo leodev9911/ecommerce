@@ -43,7 +43,19 @@ export default function CreateProduct () {
             image: imageId
           }
         })
-          .then((response) => console.log(response))
+          .then((response) => {
+            console.log(response)
+            console.log(response.data.data.id)
+            const productId = response.data.data.id
+            axios.put(`http://localhost:1337/api/products/${productId}`, {
+              data: {
+                categories: [1],
+                subcategories: [2]
+              }
+            })
+              .then((response) => console.log(response))
+              .catch((error) => console.error(error))
+          })
           .catch((error) => console.error(error))
       })
       .catch((error) => {

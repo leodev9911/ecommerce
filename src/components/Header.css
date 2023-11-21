@@ -2,7 +2,7 @@
     display: grid;
     align-items: center;
     justify-items: center;
-    grid-template-columns: 145px 1fr auto;
+    grid-template-columns: auto 1fr auto;
     height: 46px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
 }
@@ -60,6 +60,8 @@
 }      
 @media (min-width: 900px) {
     .nav__container {
+        grid-template-columns: 145px 1fr auto;
+        justify-items: end;
         height: 55px;
         padding: 0px 0px 0px 50px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
@@ -124,9 +126,15 @@
         border-radius: 6px;
         transition: 0.3s;
     }
-    .nav-right__container a:hover {
+    .nav-right__container .dashboard-link {
         background-color: transparent;
-        color: red;
+        border-color: var(--hospital-green);
+        margin-left: 10px;
+        color: var(--hospital-green);
+    }
+    .nav-right__container a:hover {
+        background-color: var(--hospital-green);
+        color: white;
     }
     .nav-right__container p {
         display: block;

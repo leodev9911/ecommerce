@@ -4,18 +4,19 @@ import arrowDown from '../assets/icons/arrow-down.svg'
 import shape from '../assets/icons/shape.svg'
 import { useAuth } from '../hooks/auth'
 import { Logo } from './Logo'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const classN = 'logo-nav__container'
 
 export const Header = ({
-  setOpenDropdownMenu,
-  setOpenMobileMenu,
-  setOpenProductDetail,
-  setOpenShoppingCart,
+  handleDropdownMenu,
+  handleShoppingCart,
+  handleMobileMenu,
   cart
 }) => {
   const { user } = useAuth()
+  const locaction = useLocation().pathname
+  console.log(user)
 
   return (
     <nav className='nav__container'>
@@ -23,24 +24,10 @@ export const Header = ({
         <img
           src={iconList}
           alt='Hamburger menu icon'
-          onClick={() => {
-            setOpenMobileMenu(openMobileMenu => !openMobileMenu)
-            setOpenProductDetail(false)
-            setOpenShoppingCart(false)
-          }}
+          onClick={() => handleMobileMenu()}
         />
       </figure>
       <Logo classN={classN} />
-      <ul className='nav-left__container'>
-        <li
-          className='.green-list__item'
-        >
-          <a href='' className='green-list__item-a'>All</a>
-        </li>
-        <li><a href=''>Clothes</a></li>
-        <li><a href=''>Electronics</a></li>
-        <li><a href=''>Furnitures</a></li>
-      </ul>
       <div className='nav-right__container'>
         <li>
           {user !== null ? <p>{user.email}</p> : <Link to='/Login'>Log in</Link>}
@@ -49,23 +36,24 @@ export const Header = ({
               src={arrowDown}
               alt='Arrow down icon'
               className='arrow-down'
-              onClick={() => {
-                setOpenDropdownMenu(openDropdownMenu => !openDropdownMenu)
-                setOpenShoppingCart(false)
-              }}
+              onClick={() => handleDropdownMenu()}
             />}
+          {user?.role === 'admin' &&
+            <Link
+              className='dashboard-link'
+              to={locaction === '/' ? '/Dashboard' : '/'}
+            >
+              {locaction === '/' ? 'Dashboard' : 'Home'}
+            </Link>}
         </li>
-        <li
-          className='shop-car__container'
-          onClick={() => {
-            setOpenShoppingCart(openShoppingCart => !openShoppingCart)
-            setOpenMobileMenu(false)
-            setOpenDropdownMenu(false)
-          }}
-        >
-          <img src={shape} alt='Cart icon' />
-          {cart.length > 0 ? <span>{cart.length}</span> : null}
-        </li>
+        {user?.role !== 'admin' &&
+          <li
+            className='shop-car__container'
+            onClick={() => handleShoppingCart()}
+          >
+            <img src={shape} alt='Cart icon' />
+            {cart?.length > 0 ? <span>{cart.length}</span> : null}
+          </li>}
       </div>
     </nav>
   )

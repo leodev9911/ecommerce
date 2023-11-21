@@ -11,37 +11,36 @@ import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
 import CreateProduct from '../components/CreateProduct'
 import { useAuth } from '../hooks/auth'
+import { MenusContext } from '../context/MenusContext'
 export const Home = () => {
   const {
-    openProductDetail,
-    openDropdownMenu,
-    openMobileMenu,
-    openShoppingCart,
     handleAddToCart,
     showProductDetail,
     productDetail,
-    setOpenDropdownMenu,
-    setOpenMobileMenu,
-    setOpenProductDetail,
-    setOpenShoppingCart,
     cart,
     deleteProductCart,
     products
   } = useContext(AppContext)
 
   const { user } = useAuth()
+  const {
+    handleProductDetail,
+    handleShoppingCart,
+    handleDropdownMenu,
+    handleMobileMenu,
+    menus
+  } = useContext(MenusContext)
 
   return (
     <section className='home'>
       <header>
         <Header
-          setOpenProductDetail={setOpenProductDetail}
-          setOpenDropdownMenu={setOpenDropdownMenu}
-          setOpenMobileMenu={setOpenMobileMenu}
-          setOpenShoppingCart={setOpenShoppingCart}
+          handleDropdownMenu={handleDropdownMenu}
+          handleMobileMenu={handleMobileMenu}
+          handleShoppingCart={handleShoppingCart}
           cart={cart}
         />
-        {openMobileMenu ? (<MobileMenuContainer />) : null}
+        {menus.openMobileMenu ? (<MobileMenuContainer />) : null}
       </header>
       <main>
         <ProductCardSection>
@@ -57,11 +56,11 @@ export const Home = () => {
               showProductDetail={showProductDetail}
             />
           ))}
-          {openProductDetail ? <ProductDetail setOpenProductDetail={setOpenProductDetail} productDetail={productDetail} /> : null}
-          {openDropdownMenu ? <DropdownMenu /> : null}
-          {openShoppingCart
+          {menus.openProductDetail ? <ProductDetail handleProductDetail={handleProductDetail} productDetail={productDetail} /> : null}
+          {menus.openDropdownMenu ? <DropdownMenu /> : null}
+          {menus.openShoppingCart
             ? (
-              <ShoppingCartAside>
+              <ShoppingCartAside handleShoppingCart={handleShoppingCart}>
                 <ShoppingCartProductCard
                   cart={cart}
                   deleteProductCart={deleteProductCart}

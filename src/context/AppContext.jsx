@@ -1,17 +1,14 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useContext } from 'react'
 import { useProducts } from '../hooks/useProducts'
+import { MenusContext } from './MenusContext'
 
 const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
   const { products } = useProducts()
   const [cart, setCart] = useState([])
-  const [openProductDetail, setOpenProductDetail] = useState(false)
-  const [openDropdownMenu, setOpenDropdownMenu] = useState(false)
-  const [openMobileMenu, setOpenMobileMenu] = useState(false)
-  const [openShoppingCart, setOpenShoppingCart] = useState(false)
   const [productDetail, setProductDetail] = useState(null)
-  // const [carIndex, setCarIndex] = useState(null)
+  const { handleProductDetail } = useContext(MenusContext)
 
   const handleAddToCart = (payload) => {
     const newCart = [...cart, payload]
@@ -25,10 +22,7 @@ const AppProvider = ({ children }) => {
 
   const showProductDetail = (id) => {
     const productsDetail = [...products]
-    setOpenProductDetail(openProductDetail => !openProductDetail)
-    setOpenDropdownMenu(false)
-    setOpenMobileMenu(false)
-    setOpenShoppingCart(false)
+    handleProductDetail()
 
     const productDetailIndex = productsDetail.findIndex(product => {
       return product.id === id
@@ -42,20 +36,10 @@ const AppProvider = ({ children }) => {
         setCart,
         handleAddToCart,
         cart,
-        openProductDetail,
-        setOpenProductDetail,
-        openDropdownMenu,
-        setOpenDropdownMenu,
-        openMobileMenu,
-        setOpenMobileMenu,
-        openShoppingCart,
-        setOpenShoppingCart,
         products,
-        // setProducts,
         deleteProductCart,
         productDetail,
         showProductDetail
-        // carIndex
       }}
     >
       {children}

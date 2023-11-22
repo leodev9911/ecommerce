@@ -8,7 +8,8 @@ export const ProductCard = ({
   price,
   product,
   handleAddToCart,
-  showProductDetail
+  showProductDetail,
+  handleProductDetail
 }) => {
   const handleClick = item => {
     handleAddToCart(item)
@@ -16,7 +17,11 @@ export const ProductCard = ({
 
   return (
     <article className='card' key={id}>
-      <img src={image} alt={title} onClick={() => showProductDetail(id)} />
+      <img
+        src={image}
+        alt={title}
+        onClick={() => showProductDetail(id)}
+      />
       <div className='card-below__container'>
         <div className='card-text__container'>
           <p className='roboto-text'>${price}</p>

@@ -133,6 +133,10 @@
         color: var(--hospital-green);
     }
     .nav-right__container a:hover {
+        background-color: white;
+        color: red;
+    }
+    .nav-right__container .dashboard-link:hover {
         background-color: var(--hospital-green);
         color: white;
     }

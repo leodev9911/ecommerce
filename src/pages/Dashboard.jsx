@@ -5,7 +5,9 @@ export default function Dashboard () {
   return (
     <>
       <Header />
-      <Outlet />
+      <section className='dashboard-section'>
+        <Outlet />
+      </section>
     </>
   )
 }

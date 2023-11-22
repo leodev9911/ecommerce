@@ -11,7 +11,6 @@ import { MyAccount } from '../pages/MyAccount'
 import { MyOrders } from '../pages/MyOrders'
 import Dashboard from '../pages/Dashboard'
 import DashboardProducts from '../pages/Products'
-// import { useState } from 'react'
 
 function App () {
   return (

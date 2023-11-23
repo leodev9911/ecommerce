@@ -14,8 +14,8 @@ export function useProducts () {
           console.log(res.status)
         } else {
           const products = await res.json()
-          setProducts(products.data)
           console.log(products.data)
+          setProducts(products.data)
         }
       } catch (error) {
         console.error(error)

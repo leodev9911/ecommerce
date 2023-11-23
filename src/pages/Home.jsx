@@ -9,8 +9,6 @@ import { ShoppingCartProductCard } from '../components/ShoppingCartProductCard'
 import { TotalCardShoppingCart } from '../components/TotalCardShoppingCart'
 import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
-import CreateProduct from '../components/CreateProduct'
-import { useAuth } from '../hooks/auth'
 import { MenusContext } from '../context/MenusContext'
 export const Home = () => {
   const {
@@ -22,7 +20,6 @@ export const Home = () => {
     products
   } = useContext(AppContext)
 
-  const { user } = useAuth()
   const {
     handleProductDetail,
     handleShoppingCart,
@@ -72,7 +69,6 @@ export const Home = () => {
               )
             : null}
         </ProductCardSection>
-        {user?.role === 'admin' && <CreateProduct />}
       </main>
     </section>
   )

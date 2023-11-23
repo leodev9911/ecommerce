@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 
 export const Layout = ({ children }) => {
-    return (
-        <div className="Layout">
-            {children}
-        </div>
-    )
+  return (
+    <div className='Layout'>
+      {children}
+    </div>
+  )
 }

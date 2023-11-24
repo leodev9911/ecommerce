@@ -76,14 +76,14 @@ export default function DashboardProducts () {
               key={product?.id}
             >
               <div className={`first-row ${index === 0 && 'first-row-item'}`}>
-                <p>{product?.attributes.title}</p>
-                <img src={product?.attributes.image.data.attributes.url} alt={product?.attributes.title} />
+                <p>{product?.title}</p>
+                <img src={product?.image} alt={product?.title} />
               </div>
               <div>{product?.id}</div>
-              <div>{product?.attributes?.categories?.data[0]?.attributes?.name}</div>
-              <div>{product?.attributes?.subcategories?.data[0]?.attributes?.name}</div>
-              <div>${product?.attributes.price}</div>
-              <div className={index === filteredProducts.length - 1 ? 'last-row-item' : ''}>{product?.attributes.quantity}</div>
+              <div>{product?.categories}</div>
+              <div>{product?.subcategories}</div>
+              <div>${product?.price}</div>
+              <div className={index === filteredProducts.length - 1 ? 'last-row-item' : ''}>{product?.quantity}</div>
             </div>
           ))}
         </div>

@@ -44,10 +44,10 @@ export const Home = () => {
           {products.map(product => (
             <ProductCard
               key={product?.id}
-              title={product?.attributes.title}
+              title={product?.title}
               id={product?.id}
-              image={product?.attributes.image.data.attributes.url}
-              price={product?.attributes.price}
+              image={product?.image}
+              price={product?.price}
               product={product}
               handleAddToCart={handleAddToCart}
               showProductDetail={showProductDetail}

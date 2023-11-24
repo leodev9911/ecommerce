@@ -8,8 +8,7 @@ export const ProductCard = ({
   price,
   product,
   handleAddToCart,
-  showProductDetail,
-  handleProductDetail
+  showProductDetail
 }) => {
   const handleClick = item => {
     handleAddToCart(item)

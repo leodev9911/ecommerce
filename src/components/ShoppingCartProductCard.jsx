@@ -13,12 +13,12 @@ export const ShoppingCartProductCard = ({
       >
         <div className='left-card__container'>
           <figure>
-            <img src={car?.attributes.image.data.attributes.url} alt={car?.attributes.title} />
+            <img src={car?.image} alt={car?.title} />
           </figure>
-          <span className='articles'>{car?.attributes.title}</span>
+          <span className='articles'>{car?.title}</span>
         </div>
         <div className='right-card__container'>
-          <p>${car?.attributes.price}</p>
+          <p>${car?.price}</p>
           <figure className='close-icon'>
             <img
               src={closeIcon}

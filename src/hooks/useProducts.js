@@ -5,6 +5,7 @@ const GET_PRODUCTS = '/products?populate[image][fields][0]=url&populate[categori
 
 export function useProducts () {
   const [products, setProducts] = useState([])
+  console.log(products)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,8 +15,21 @@ export function useProducts () {
           console.log(res.status)
         } else {
           const products = await res.json()
-          console.log(products.data)
-          setProducts(products.data)
+          const productsArray = []
+          products.data.map(product => {
+            productsArray.push({
+              id: product.id,
+              title: product.attributes.title,
+              price: product.attributes.price,
+              quantity: product.attributes.quantity,
+              description: product.attributes.description,
+              image: product.attributes.image.data.attributes.url,
+              categories: product?.attributes?.categories?.data[0]?.attributes?.name,
+              subcategories: product?.attributes?.subcategories?.data[0]?.attributes?.name
+            })
+          })
+
+          setProducts(productsArray)
         }
       } catch (error) {
         console.error(error)

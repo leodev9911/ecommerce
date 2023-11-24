@@ -21,7 +21,7 @@ export function useFilters () {
   const filterProducts = (products) => {
     return products.filter(product => {
       if (filters.category !== 'All') {
-        return filters.category === product?.attributes?.categories?.data[0]?.attributes?.name
+        return filters.category === product?.categories
       }
       return product
     })

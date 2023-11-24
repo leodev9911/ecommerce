@@ -15,9 +15,9 @@ export const ProductInfo = () => {
 
   return (
     <div className='product-detail-text__container'>
-      <h1>${productDetail?.attributes.price}</h1>
-      <p>{productDetail?.attributes.title}</p>
-      <p className='detail-p'>{productDetail?.attributes.description}</p>
+      <h1>${productDetail?.price}</h1>
+      <p>{productDetail?.title}</p>
+      <p className='detail-p'>{productDetail?.description}</p>
       <button className='product-detail__button' onClick={() => handleClick(productDetail)}>
         <figure>
           <img src={whiteCart} alt='Add to cart icon' />

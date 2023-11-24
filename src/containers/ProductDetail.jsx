@@ -15,7 +15,7 @@ export const ProductDetail = ({
         <img src={closeIcon} alt='A close icon' />
       </figure>
       <figure className='product-image'>
-        <img src={productDetail?.attributes.image.data.attributes.url} alt={productDetail?.attributes.title} />
+        <img src={productDetail?.image} alt={productDetail?.title} />
       </figure>
       <ProductInfo />
     </aside>

@@ -8,8 +8,6 @@ export function useCreateProduct (formData, file) {
 
     axios.post('http://localhost:1337/api/upload', formData12)
       .then((response) => {
-        console.log('Se ejecuta')
-        console.log(response)
         const imageId = response.data[0].id
         axios.post('http://localhost:1337/api/products', {
           data: {

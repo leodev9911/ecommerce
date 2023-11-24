@@ -1,17 +1,17 @@
-import { useContext, useState } from 'react'
-import { AppContext } from '../context/AppContext'
+import { useState } from 'react'
 import './Products.css'
 import { useSizes } from '../hooks/useSizes'
 import arrowDown from '../assets/icons/dashboard-arrow-down.svg'
 import { FormDashboardModal } from '../containers/FormDashboardModal'
 import CreateProduct from '../components/CreateProduct'
 import { useCategories } from '../hooks/useCategories'
+import { useFilters } from '../hooks/useFilters'
 
 export default function DashboardProducts () {
   const [formIsActive, setFormIsActive] = useState(false)
   const { categories, subcategories } = useCategories()
-  const { products } = useContext(AppContext)
   const { actualWidth } = useSizes()
+  const { handleOnChangeFilter, filteredProducts } = useFilters()
 
   return (
     <>
@@ -20,13 +20,14 @@ export default function DashboardProducts () {
         <div className='filters-container'>
           <div className='select-container'>
             <select
-              name='dashboardProductsCategory'
+              name='category'
               className='dashboard-products__category'
-              id=''
+              id='dashboard-category-filter'
+              onChange={handleOnChangeFilter}
             >
               <option value='All'>All</option>
               {categories?.map(categorie => {
-                return <option key={categorie.id} value={categorie.id}>{categorie.name}</option>
+                return <option key={categorie.id} value={categorie.name}>{categorie.name}</option>
               })}
             </select>
             <img
@@ -54,7 +55,7 @@ export default function DashboardProducts () {
                 <div>Price</div>
                 <div>Quantity</div>
               </div>
-            : products?.map((product, index) => (
+            : filteredProducts?.map((product, index) => (
               <div
                 className='products-table-header__section'
                 key={product?.id}
@@ -69,7 +70,7 @@ export default function DashboardProducts () {
             ))}
         </div>
         <div className='products-table-row'>
-          {products?.map((product, index) => (
+          {filteredProducts?.map((product, index) => (
             <div
               className='products-table-row__section'
               key={product?.id}
@@ -82,7 +83,7 @@ export default function DashboardProducts () {
               <div>{product?.attributes?.categories?.data[0]?.attributes?.name}</div>
               <div>{product?.attributes?.subcategories?.data[0]?.attributes?.name}</div>
               <div>${product?.attributes.price}</div>
-              <div className={index === products.length - 1 ? 'last-row-item' : ''}>{product?.attributes.quantity}</div>
+              <div className={index === filteredProducts.length - 1 ? 'last-row-item' : ''}>{product?.attributes.quantity}</div>
             </div>
           ))}
         </div>

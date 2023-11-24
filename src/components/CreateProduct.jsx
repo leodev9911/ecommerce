@@ -2,7 +2,8 @@ import { useState } from 'react'
 import placeholder from '../assets/img/placeholder.png'
 import closeIcon from '../assets/icons/dashboard-close-icon.svg'
 import './CreateProduct.css'
-import axios from 'axios'
+import { useUploadImage } from '../hooks/useUploadImage'
+import { useCreateProduct } from '../hooks/useCreateProduct'
 
 export default function CreateProduct ({ setFormIsActive, subcategories, categories }) {
   const [formData, setFormData] = useState({
@@ -12,14 +13,8 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
     productCategorie: 'None',
     productSubcategorie: 'None'
   })
-  const [file, setFile] = useState()
-  const [imageUpload, setImageUpload] = useState()
-  console.log(formData)
-
-  const uploadImage = (event) => {
-    setImageUpload(URL.createObjectURL(event.target.files[0]))
-    setFile(event.target.files)
-  }
+  const { file, imageUpload, uploadImage } = useUploadImage()
+  const { handleSubmit } = useCreateProduct(formData, file)
 
   const handleChange = (event) => {
     const { value, name } = event.target
@@ -29,40 +24,6 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
         [name]: value
       }
     })
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const formData12 = new FormData()
-
-    formData12.append('files', file[0])
-    axios.post('http://localhost:1337/api/upload', formData12)
-      .then((response) => {
-        const imageId = response.data[0].id
-        axios.post('http://localhost:1337/api/products', {
-          data: {
-            title: formData.title,
-            description: formData.description,
-            price: formData.price,
-            image: imageId
-          }
-        })
-          .then((response) => {
-            const productId = response.data.data.id
-            if (formData.productCategorie !== 'None' && formData.productSubcategorie !== 'None') {
-              axios.put(`http://localhost:1337/api/products/${productId}`, {
-                data: {
-                  categories: [Number(formData.productCategorie)],
-                  subcategories: [Number(formData.productSubcategorie)]
-                }
-              })
-            }
-          })
-          .catch((error) => console.error(error))
-      })
-      .catch((error) => {
-        console.error(error)
-      })
   }
 
   return (

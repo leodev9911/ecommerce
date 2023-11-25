@@ -41,7 +41,7 @@ export const Header = ({
           {user?.role === 'admin' &&
             <Link
               className='dashboard-link'
-              to={locaction === '/' ? '/Dashboard' : '/'}
+              to={locaction === '/' ? '/Dashboard/Products' : '/'}
             >
               {locaction === '/' ? 'Dashboard' : 'Home'}
             </Link>}

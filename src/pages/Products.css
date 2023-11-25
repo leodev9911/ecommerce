@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 .select-container {
     position: relative;
@@ -71,12 +71,15 @@
 .products-table-header__section > div {
     display: flex;
     align-items: center;
-    height: 50px;
-    padding: 0 20px;
+    height: 48px;
+    padding: 10px 20px;
     font-size: 1.4rem;
     color: var(--hospital-green);
     font-weight: 700;
     min-width: 120px;
+}
+.products-table-header__section > div > p {
+    height: 30px;
 }
 .products-table-row__section {
     display: grid;
@@ -85,18 +88,44 @@
 .products-table-row__section > div {
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 10px 20px;
     gap: 20px;
-    height: 48px;
+    height: auto;
     font-size: 1.2rem;
     font-weight: 500;
     border: 1px solid var(--hospital-green);
     min-width: 120px;
 }
-.products-table-row__section > div > img {
+.products-table-row__section > div > p {
+    height: 30px;
+}
+.products-table-row__section .left-column p {
+    width: 70px;
+    word-wrap: break-word;
+}
+.products-table-row__section .right-column img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+.products-table-row__section .right-column .action-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.products-table-row__section .right-column .action-icon:hover {
+    transform: scale(1.2);
+}
+.products-table-row__section .right-column {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 @media(max-width: 1000px) {
     .dashboard-section {
@@ -107,7 +136,7 @@
         grid-template-columns: 1fr 1fr;
     }
     .products-table-header__section {
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(7, minmax(auto));
         grid-template-columns: none;
     }
     .products-table-header__section > div {
@@ -123,14 +152,21 @@
         border-radius: 0px 0px 6px 0px;
     }
     .products-table-row__section {
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(7, minmax(auto));
         grid-template-columns: none;
     }
     .dashboard-products-table .first-row {
+        height: auto;
         background-color: gray;
         font-weight: 700;
         border-color: transparent;
         font-size: 1.5rem;
         color: white;
+    }
+    .dashboard-products-table .first-row {
+        height: 110px;
+    }
+    .products-table-row__section > div {
+        height: 48px;
     }
 }

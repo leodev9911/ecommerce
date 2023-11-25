@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react'
 const APIS_URL = 'http://localhost:1337/api'
 const GET_PRODUCTS = '/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
 
-export function useProducts () {
+export function useProducts (needToRefresh) {
   const [products, setProducts] = useState([])
-  console.log(products)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +16,7 @@ export function useProducts () {
           const products = await res.json()
           const productsArray = []
           products.data.map(product => {
-            productsArray.push({
+            return productsArray.push({
               id: product.id,
               title: product.attributes.title,
               price: product.attributes.price,
@@ -36,7 +35,7 @@ export function useProducts () {
       }
     }
     fetchData()
-  }, [])
+  }, [needToRefresh])
 
   return { products }
 }

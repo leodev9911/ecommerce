@@ -1,20 +1,32 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import placeholder from '../assets/img/placeholder.png'
 import closeIcon from '../assets/icons/dashboard-close-icon.svg'
 import './CreateProduct.css'
 import { useUploadImage } from '../hooks/useUploadImage'
 import { useCreateProduct } from '../hooks/useCreateProduct'
+import { useEditProduct } from '../hooks/useEditProduc'
+import { AppContext } from '../context/AppContext'
 
-export default function CreateProduct ({ setFormIsActive, subcategories, categories }) {
+export default function CreateProduct ({
+  setFormIsActive,
+  subcategories,
+  categories,
+  setIsForEdit,
+  isForEdit,
+  productToEdit
+}) {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    price: '',
-    productCategorie: 'None',
-    productSubcategorie: 'None'
+    title: isForEdit ? productToEdit.title : '',
+    description: isForEdit ? productToEdit.description : '',
+    price: isForEdit ? productToEdit.price : '',
+    quantity: 1,
+    productCategorie: isForEdit ? productToEdit.categories : 'None',
+    productSubcategorie: isForEdit ? productToEdit.subcategories : 'None'
   })
+  const { setNeedToRefresh } = useContext(AppContext)
   const { file, imageUpload, uploadImage } = useUploadImage()
-  const { handleSubmit } = useCreateProduct(formData, file)
+  const { handleCreateProduct } = useCreateProduct(formData, file, setNeedToRefresh, setFormIsActive)
+  const { handleEditProduct } = useEditProduct(productToEdit, formData, setNeedToRefresh, setFormIsActive)
 
   const handleChange = (event) => {
     const { value, name } = event.target
@@ -32,10 +44,13 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
         <img
           src={closeIcon}
           alt='Close icon'
-          onClick={() => setFormIsActive(false)}
+          onClick={() => {
+            setFormIsActive(false)
+            setIsForEdit(false)
+          }}
           className='create-product-close-icon'
         />
-        <h3>Create a new product</h3>
+        <h3>{isForEdit ? 'Edit your product' : 'Create a new product'}</h3>
       </div>
       <form className='create-new-product__form'>
         <div className='title-input'>
@@ -47,6 +62,7 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
             type='text'
             placeholder='Add a title for your product'
             name='title'
+            value={formData.title}
             onChange={(event) => handleChange(event)}
           />
         </div>
@@ -59,6 +75,7 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
             type='text'
             placeholder='Add a description of your product here'
             name='description'
+            value={formData.description}
             onChange={(event) => handleChange(event)}
           />
         </div>
@@ -71,6 +88,7 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
             type='text'
             placeholder='4500'
             name='price'
+            value={formData.price}
             onChange={(event) => handleChange(event)}
           />
         </div>
@@ -83,12 +101,14 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
             type='text'
             placeholder='12'
             name='quantity'
+            value={formData.quantity}
             onChange={(event) => handleChange(event)}
           />
         </div>
         <select
           name='productCategorie'
           onChange={(event) => handleChange(event)}
+          value={formData.productCategorie}
           className='create-product-selects'
         >
           <option value='All'>None</option>
@@ -100,6 +120,7 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
           name='productSubcategorie'
           onChange={(event) => handleChange(event)}
           className='create-product-selects'
+          value={formData.productSubcategorie}
         >
           <option value='All'>None</option>
           {subcategories?.map(subcategorie => {
@@ -114,7 +135,7 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
                 className='placeholder-img'
               />
             : <img
-                src={placeholder}
+                src={isForEdit ? productToEdit.image : placeholder}
                 alt='Placeholder image'
                 className='placeholder-img'
               />}
@@ -135,7 +156,9 @@ export default function CreateProduct ({ setFormIsActive, subcategories, categor
         <input
           className='create-product-submit'
           type='submit'
-          onClick={(event) => handleSubmit(event)}
+          onClick={!isForEdit
+            ? (event) => handleCreateProduct(event)
+            : (event) => handleEditProduct(event)}
         />
       </form>
     </section>

@@ -1,27 +1,32 @@
 import axios from 'axios'
 
-export function useCreateProduct (formData, file) {
-  const handleSubmit = async (event) => {
+const APIS_URL = 'http://localhost:1337/'
+const UPLOAD_ENDPOINT = 'api/upload'
+const POST_ENDPOINT = 'api/products'
+
+export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefresh) {
+  const handleCreateProduct = async (event) => {
     event.preventDefault()
     const formData12 = new FormData()
     formData12.append('files', file[0])
 
-    axios.post('http://localhost:1337/api/upload', formData12)
+    axios.post(`${APIS_URL}${UPLOAD_ENDPOINT}`, formData12)
       .then((response) => {
         const imageId = response.data[0].id
-        axios.post('http://localhost:1337/api/products', {
+        axios.post(`${APIS_URL}${POST_ENDPOINT}`, {
           data: {
             title: formData.title,
             description: formData.description,
             price: formData.price,
-            image: imageId
+            image: imageId,
+            quantity: formData.quantity
           }
         })
           .then((response) => {
             console.log(response)
             const productId = response.data.data.id
-            if (formData.productCategorie !== 'None' && formData.productSubcategorie !== 'None') {
-              axios.put(`http://localhost:1337/api/products/${productId}`, {
+            if (formData.productCategorie !== 'None' || formData.productSubcategorie !== 'None') {
+              axios.put(`${APIS_URL}${POST_ENDPOINT}/${productId}`, {
                 data: {
                   categories: [Number(formData.productCategorie)],
                   subcategories: [Number(formData.productSubcategorie)]
@@ -34,7 +39,9 @@ export function useCreateProduct (formData, file) {
       .catch((error) => {
         console.error(error)
       })
+    setNeedToRefresh(prev => !prev)
+    setFormIsActive(false)
   }
 
-  return { handleSubmit }
+  return { handleCreateProduct }
 }

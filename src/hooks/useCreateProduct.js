@@ -32,6 +32,11 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
                   subcategories: [Number(formData.productSubcategorie)]
                 }
               })
+                .then(response => {
+                  console.log(response)
+                  setNeedToRefresh(prev => !prev)
+                })
+                .then(setFormIsActive(false))
             }
           })
           .catch((error) => console.error(error))
@@ -39,8 +44,6 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
       .catch((error) => {
         console.error(error)
       })
-    setNeedToRefresh(prev => !prev)
-    setFormIsActive(false)
   }
 
   return { handleCreateProduct }

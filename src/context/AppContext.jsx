@@ -5,8 +5,10 @@ import { MenusContext } from './MenusContext'
 const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
-  const [needToRefresh, setNeedToRefresh] = useState(false)
-  const { products } = useProducts(needToRefresh)
+  const [products, setProducts] = useState([])
+  const { needToRefresh, setNeedToRefresh } = useProducts(setProducts)
+  console.log(products)
+  console.log(needToRefresh)
   const [cart, setCart] = useState([])
   const [productDetail, setProductDetail] = useState(null)
   const { handleProductDetail } = useContext(MenusContext)
@@ -41,7 +43,6 @@ const AppProvider = ({ children }) => {
         deleteProductCart,
         productDetail,
         showProductDetail,
-        needToRefresh,
         setNeedToRefresh
       }}
     >

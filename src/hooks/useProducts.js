@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 const APIS_URL = 'http://localhost:1337/api'
 const GET_PRODUCTS = '/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
 
-export function useProducts (needToRefresh) {
-  const [products, setProducts] = useState([])
+export function useProducts (setProducts) {
+  const [needToRefresh, setNeedToRefresh] = useState(false)
+  console.log(needToRefresh)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +15,8 @@ export function useProducts (needToRefresh) {
           console.log(res.status)
         } else {
           const products = await res.json()
+          console.log('Se ejecuta')
+          console.log(products.data)
           const productsArray = []
           products.data.map(product => {
             return productsArray.push({
@@ -37,5 +40,5 @@ export function useProducts (needToRefresh) {
     fetchData()
   }, [needToRefresh])
 
-  return { products }
+  return { needToRefresh, setNeedToRefresh }
 }

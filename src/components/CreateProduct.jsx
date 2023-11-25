@@ -1,11 +1,10 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import placeholder from '../assets/img/placeholder.png'
 import closeIcon from '../assets/icons/dashboard-close-icon.svg'
 import './CreateProduct.css'
 import { useUploadImage } from '../hooks/useUploadImage'
 import { useCreateProduct } from '../hooks/useCreateProduct'
 import { useEditProduct } from '../hooks/useEditProduc'
-import { AppContext } from '../context/AppContext'
 
 export default function CreateProduct ({
   setFormIsActive,
@@ -13,7 +12,8 @@ export default function CreateProduct ({
   categories,
   setIsForEdit,
   isForEdit,
-  productToEdit
+  productToEdit,
+  setNeedToRefresh
 }) {
   const [formData, setFormData] = useState({
     title: isForEdit ? productToEdit.title : '',
@@ -23,10 +23,11 @@ export default function CreateProduct ({
     productCategorie: isForEdit ? productToEdit.categories : 'None',
     productSubcategorie: isForEdit ? productToEdit.subcategories : 'None'
   })
-  const { setNeedToRefresh } = useContext(AppContext)
+
+  console.log(productToEdit)
   const { file, imageUpload, uploadImage } = useUploadImage()
-  const { handleCreateProduct } = useCreateProduct(formData, file, setNeedToRefresh, setFormIsActive)
-  const { handleEditProduct } = useEditProduct(productToEdit, formData, setNeedToRefresh, setFormIsActive)
+  const { handleCreateProduct } = useCreateProduct(formData, file, setFormIsActive, setNeedToRefresh)
+  const { handleEditProduct } = useEditProduct(productToEdit, formData, setFormIsActive, setNeedToRefresh)
 
   const handleChange = (event) => {
     const { value, name } = event.target
@@ -153,13 +154,19 @@ export default function CreateProduct ({
             className='image-input'
           />
         </div>
-        <input
-          className='create-product-submit'
-          type='submit'
-          onClick={!isForEdit
-            ? (event) => handleCreateProduct(event)
-            : (event) => handleEditProduct(event)}
-        />
+        {isForEdit
+          ? <input
+              className='create-product-submit'
+              value='Edit'
+              type='submit'
+              onClick={(event) => handleEditProduct(event)}
+            />
+          : <input
+              className='create-product-submit'
+              value='Create'
+              type='submit'
+              onClick={(event) => handleCreateProduct(event)}
+            />}
       </form>
     </section>
   )

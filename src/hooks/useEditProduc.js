@@ -4,7 +4,7 @@ const APIS_URL = 'http://localhost:1337/'
 // const UPLOAD_ENDPOINT = 'api/upload'
 const POST_ENDPOINT = 'api/products'
 
-export function useEditProduct (productToEdit, formData) {
+export function useEditProduct (productToEdit, formData, setFormIsActive, setNeedToRefresh) {
   const handleEditProduct = async (event) => {
     event.preventDefault()
     axios.put(`${APIS_URL}${POST_ENDPOINT}/${productToEdit.id}`, {
@@ -17,7 +17,11 @@ export function useEditProduct (productToEdit, formData) {
         subcategories: [Number(formData.productSubcategorie)]
       }
     })
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        setNeedToRefresh(prev => !prev)
+      })
+      .then(setFormIsActive(false))
   }
 
   return { handleEditProduct }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './Products.css'
 import { useSizes } from '../hooks/useSizes'
 import arrowDown from '../assets/icons/dashboard-arrow-down.svg'
@@ -9,15 +9,17 @@ import { useFilters } from '../hooks/useFilters'
 import deleteIcon from '../assets/icons/delete-icon.svg'
 import editIcon from '../assets/icons/edit-icon.svg'
 import { useDeleteProduct } from '../hooks/useProductDelete'
+import { AppContext } from '../context/AppContext'
 
 export default function DashboardProducts () {
   const [formIsActive, setFormIsActive] = useState(false)
   const [isForEdit, setIsForEdit] = useState(false)
   const [productToEdit, setProductToEdit] = useState()
   const { categories, subcategories } = useCategories()
+  const { products, setNeedToRefresh } = useContext(AppContext)
   const { actualWidth } = useSizes()
-  const { handleOnChangeFilter, filteredProducts } = useFilters()
-  const { handleDelete } = useDeleteProduct()
+  const { handleOnChangeFilter, filteredProducts } = useFilters(products)
+  const { handleDelete } = useDeleteProduct(setNeedToRefresh)
 
   const handleEditProduct = (id) => {
     setProductToEdit(filteredProducts.find(product => product.id === id))
@@ -126,6 +128,7 @@ export default function DashboardProducts () {
             subcategories={subcategories}
             categories={categories}
             productToEdit={productToEdit}
+            setNeedToRefresh={setNeedToRefresh}
           />
         </FormDashboardModal>}
     </>

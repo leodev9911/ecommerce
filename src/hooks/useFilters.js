@@ -1,11 +1,9 @@
-import { useContext, useState } from 'react'
-import { AppContext } from '../context/AppContext'
+import { useState } from 'react'
 
-export function useFilters () {
+export function useFilters (products) {
   const [filters, setFilters] = useState({
     category: 'All'
   })
-  const { products } = useContext(AppContext)
 
   const handleOnChangeFilter = (event) => {
     const { name, value } = event.target

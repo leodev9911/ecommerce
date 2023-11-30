@@ -111,8 +111,8 @@ export default function DashboardProducts () {
                 </div>
               </div>
               <div>{product?.id}</div>
-              <div>{product?.categories}</div>
-              <div>{product?.subcategories}</div>
+              <div>{product?.categories.name}</div>
+              <div>{product?.subcategories.name}</div>
               <div>${product?.price}</div>
               <div className={index === filteredProducts.length - 1 ? 'last-row-item' : ''}>{product?.quantity}</div>
             </div>

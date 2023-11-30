@@ -6,9 +6,7 @@ const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([])
-  const { needToRefresh, setNeedToRefresh } = useProducts(setProducts)
-  console.log(products)
-  console.log(needToRefresh)
+  const { setNeedToRefresh } = useProducts(setProducts)
   const [cart, setCart] = useState([])
   const [productDetail, setProductDetail] = useState(null)
   const { handleProductDetail } = useContext(MenusContext)

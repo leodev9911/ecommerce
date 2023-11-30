@@ -1,22 +1,22 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { useForms } from './useForms'
 
 const AuthContext = createContext()
 
-// roles: admin, customer
-
 const LOGIN_URL = 'https://api.escuelajs.co/api/v1/auth/login'
 
 export function AuthProvider ({ children }) {
+  useEffect(() => {
+    const isLoggedUser = window.localStorage.getItem('loggedUserEcommerce')
+    if (isLoggedUser) {
+      const user = JSON.parse(isLoggedUser)
+      setUser(user)
+    }
+  }, [])
+
   const { setOpenDropdownMenu, setOpenMobileMenu } = useContext(AppContext)
-  const navigate = useNavigate()
   const [user, setUser] = useState(null)
-  const [tokens, setTokens] = useState({
-    accessToken: '',
-    refreshTokenL: ''
-  })
   const [formData, setFormData] = useState({
     email: {
       value1: '',
@@ -65,13 +65,7 @@ export function AuthProvider ({ children }) {
         })
       })
       const data = await res.json()
-      setTokens(prev => {
-        return {
-          ...prev,
-          accessToken: data.access_token,
-          refreshToken: data.refresh_token
-        }
-      })
+      console.log(data)
 
       const getUser = await fetch('https://api.escuelajs.co/api/v1/auth/profile', {
         headers: {
@@ -81,7 +75,24 @@ export function AuthProvider ({ children }) {
       console.log(getUser)
       if (getUser.status === 200) {
         const userFromApi = await getUser.json()
-        setUser(userFromApi)
+
+        window.localStorage.setItem(
+          'loggedUserEcommerce', JSON.stringify({
+            name: userFromApi.name,
+            password: userFromApi.password,
+            email: userFromApi.email,
+            role: userFromApi.role,
+            accessToken: data.access_token
+          })
+        )
+
+        setUser({
+          name: userFromApi.name,
+          password: userFromApi.password,
+          email: userFromApi.email,
+          role: userFromApi.role,
+          accessToken: data.access_token
+        })
       } else {
         setFormData(prev => {
           return {
@@ -100,6 +111,7 @@ export function AuthProvider ({ children }) {
   }
 
   const handleLogOut = () => {
+    window.localStorage.removeItem('loggedUserEcommerce')
     setUser(null)
     setOpenDropdownMenu(false)
     setOpenMobileMenu(false)

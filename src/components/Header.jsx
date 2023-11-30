@@ -5,18 +5,21 @@ import shape from '../assets/icons/shape.svg'
 import { useAuth } from '../hooks/auth'
 import { Logo } from './Logo'
 import { Link, useLocation } from 'react-router-dom'
+import { useContext } from 'react'
+import { MenusContext } from '../context/MenusContext'
 
 const classN = 'logo-nav__container'
 
 export const Header = ({
-  handleDropdownMenu,
-  handleShoppingCart,
-  handleMobileMenu,
   cart
 }) => {
   const { user } = useAuth()
+  const {
+    handleShoppingCart,
+    handleDropdownMenu,
+    handleMobileMenu
+  } = useContext(MenusContext)
   const locaction = useLocation().pathname
-  console.log(user)
 
   return (
     <nav className='nav__container'>

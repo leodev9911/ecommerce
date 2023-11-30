@@ -5,7 +5,6 @@ import './MobileMenuContainer.css'
 export const MobileMenuContainer = () => {
   const { user, handleLogOut } = useAuth()
   const locaction = useLocation().pathname
-  console.log(locaction)
 
   return (
     <section className='mobile-menu__container inactive'>
@@ -25,7 +24,7 @@ export const MobileMenuContainer = () => {
         {user === null
           ? <li><Link to='/Login' className='green-text'>Log in</Link></li>
           : <li><button className='red-text' onClick={handleLogOut}>Sign out</button></li>}
-        {user?.role === 'admin' && <li><Link to={locaction === '/' ? '/Dashboard' : '/'} className='green-text'>{locaction === '/' ? 'Dashboard' : 'Home'}</Link></li>}
+        {user?.role === 'admin' && <li><Link to={locaction === '/' ? '/Dashboard/Products' : '/'} className='green-text'>{locaction === '/' ? 'Dashboard' : 'Home'}</Link></li>}
       </ul>
     </section>
   )

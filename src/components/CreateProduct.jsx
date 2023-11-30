@@ -20,11 +20,10 @@ export default function CreateProduct ({
     description: isForEdit ? productToEdit.description : '',
     price: isForEdit ? productToEdit.price : '',
     quantity: 1,
-    productCategorie: isForEdit ? productToEdit.categories : 'None',
-    productSubcategorie: isForEdit ? productToEdit.subcategories : 'None'
+    productCategorie: isForEdit ? productToEdit.categories.id : '',
+    productSubcategorie: isForEdit ? productToEdit.subcategories.id : ''
   })
 
-  console.log(productToEdit)
   const { file, imageUpload, uploadImage } = useUploadImage()
   const { handleCreateProduct } = useCreateProduct(formData, file, setFormIsActive, setNeedToRefresh)
   const { handleEditProduct } = useEditProduct(productToEdit, formData, setFormIsActive, setNeedToRefresh)

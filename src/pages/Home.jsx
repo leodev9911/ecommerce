@@ -23,8 +23,6 @@ export const Home = () => {
   const {
     handleProductDetail,
     handleShoppingCart,
-    handleDropdownMenu,
-    handleMobileMenu,
     menus
   } = useContext(MenusContext)
 
@@ -32,9 +30,6 @@ export const Home = () => {
     <section className='home'>
       <header>
         <Header
-          handleDropdownMenu={handleDropdownMenu}
-          handleMobileMenu={handleMobileMenu}
-          handleShoppingCart={handleShoppingCart}
           cart={cart}
         />
         {menus.openMobileMenu ? (<MobileMenuContainer />) : null}

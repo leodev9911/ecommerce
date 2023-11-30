@@ -25,10 +25,27 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
           .then((response) => {
             console.log(response)
             const productId = response.data.data.id
-            if (formData.productCategorie !== 'None' || formData.productSubcategorie !== 'None') {
+            if (formData.productCategorie !== '') {
               axios.put(`${APIS_URL}${POST_ENDPOINT}/${productId}`, {
                 data: {
-                  categories: [Number(formData.productCategorie)],
+                  categories: [Number(formData.productCategorie)]
+                }
+              })
+                .then(response => {
+                  if (formData.productSubcategorie === '') {
+                    console.log(response)
+                    setNeedToRefresh(prev => !prev)
+                  }
+                })
+                .then(response => {
+                  if (formData.productSubcategorie === '') {
+                    setFormIsActive(false)
+                  }
+                })
+            }
+            if (formData.productSubcategorie !== '') {
+              axios.put(`${APIS_URL}${POST_ENDPOINT}/${productId}`, {
+                data: {
                   subcategories: [Number(formData.productSubcategorie)]
                 }
               })
@@ -39,11 +56,18 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
                 .then(setFormIsActive(false))
             }
           })
+          .then(() => {
+            if (formData.productCategorie === '' && formData.productSubcategorie === '') {
+              setNeedToRefresh(prev => !prev)
+            }
+          })
+          .then(setFormIsActive(false))
           .catch((error) => console.error(error))
       })
       .catch((error) => {
         console.error(error)
       })
+    setNeedToRefresh(prev => !prev)
   }
 
   return { handleCreateProduct }

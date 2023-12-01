@@ -10,6 +10,8 @@ import { TotalCardShoppingCart } from '../components/TotalCardShoppingCart'
 import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
 import { MenusContext } from '../context/MenusContext'
+import CategoryFilters from '../components/CategoryFilter'
+import { useFilters } from '../hooks/useFilters'
 export const Home = () => {
   const {
     handleAddToCart,
@@ -26,6 +28,8 @@ export const Home = () => {
     menus
   } = useContext(MenusContext)
 
+  const { filteredProducts, handleOnChangeFilter } = useFilters(products)
+
   return (
     <section className='home'>
       <header>
@@ -35,8 +39,11 @@ export const Home = () => {
         {menus.openMobileMenu ? (<MobileMenuContainer />) : null}
       </header>
       <main>
+        <CategoryFilters
+          handleOnChangeFilter={handleOnChangeFilter}
+        />
         <ProductCardSection>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductCard
               key={product?.id}
               title={product?.title}

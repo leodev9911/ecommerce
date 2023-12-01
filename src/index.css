@@ -17,3 +17,9 @@ body {
   font-family: "Quicksand", sans-serif;
   position: relative;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+}

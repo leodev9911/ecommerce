@@ -16,10 +16,12 @@ export function useFilters (products) {
     })
   }
 
+  console.log(products)
+
   const filterProducts = (products) => {
     return products.filter(product => {
       if (filters.category !== 'All') {
-        return filters.category === product?.categories
+        return filters.category === product?.categories.name
       }
       return product
     })
@@ -27,5 +29,5 @@ export function useFilters (products) {
 
   const filteredProducts = filterProducts(products)
 
-  return { handleOnChangeFilter, filteredProducts }
+  return { filters, handleOnChangeFilter, filteredProducts }
 }

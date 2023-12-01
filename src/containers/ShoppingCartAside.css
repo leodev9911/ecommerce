@@ -65,11 +65,6 @@
     .card-text__container p {
         font-size: 1.4rem;
     }
-    .card img {
-        width: 240px;
-        height: 240px;
-        object-fit: cover;
-    }
     .car-icon img {
         width: 45px;
         height: 45px;

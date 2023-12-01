@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react'
 import './Products.css'
 import { useSizes } from '../hooks/useSizes'
-import arrowDown from '../assets/icons/dashboard-arrow-down.svg'
 import { FormDashboardModal } from '../containers/FormDashboardModal'
 import CreateProduct from '../components/CreateProduct'
 import { useCategories } from '../hooks/useCategories'
@@ -10,6 +9,7 @@ import deleteIcon from '../assets/icons/delete-icon.svg'
 import editIcon from '../assets/icons/edit-icon.svg'
 import { useDeleteProduct } from '../hooks/useProductDelete'
 import { AppContext } from '../context/AppContext'
+import CategoryFilters from '../components/CategoryFilter'
 
 export default function DashboardProducts () {
   const [formIsActive, setFormIsActive] = useState(false)
@@ -18,8 +18,9 @@ export default function DashboardProducts () {
   const { categories, subcategories } = useCategories()
   const { products, setNeedToRefresh } = useContext(AppContext)
   const { actualWidth } = useSizes()
-  const { handleOnChangeFilter, filteredProducts } = useFilters(products)
+  const { filters, filteredProducts, handleOnChangeFilter } = useFilters(products)
   const { handleDelete } = useDeleteProduct(setNeedToRefresh)
+  console.log(filters)
 
   const handleEditProduct = (id) => {
     setProductToEdit(filteredProducts.find(product => product.id === id))
@@ -32,32 +33,16 @@ export default function DashboardProducts () {
     <>
       <section className='dashboard-products-header'>
         <h2>List of products</h2>
-        <div className='filters-container'>
-          <div className='select-container'>
-            <select
-              name='category'
-              className='dashboard-products__category'
-              id='dashboard-category-filter'
-              onChange={handleOnChangeFilter}
-            >
-              <option value='All'>All</option>
-              {categories?.map(categorie => {
-                return <option key={categorie.id} value={categorie.name}>{categorie.name}</option>
-              })}
-            </select>
-            <img
-              src={arrowDown}
-              alt='Arrow down icon'
-              className='select-arrow-down'
-            />
-          </div>
+        <CategoryFilters
+          handleOnChangeFilter={handleOnChangeFilter}
+        >
           <button
             className='add-product__button'
             onClick={() => setFormIsActive(true)}
           >
             + Add product
           </button>
-        </div>
+        </CategoryFilters>
       </section>
       <section className='dashboard-products-table'>
         <div className='products-table__header'>

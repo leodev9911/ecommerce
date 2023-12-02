@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const APIS_URL = 'http://localhost:1337'
-const CATEGORIES_ENDPOINT = '/api/categories'
-const SUBCATEGORIES_ENDPOINT = '/api/subcategories'
+const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
+const CATEGORIES_ENDPOINT = 'api/categories'
+const SUBCATEGORIES_ENDPOINT = 'api/subcategories'
 
 export function useCategories () {
   const [categories, setCategories] = useState([])

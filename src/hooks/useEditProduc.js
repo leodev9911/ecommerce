@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const APIS_URL = 'http://localhost:1337/'
+const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
 // const UPLOAD_ENDPOINT = 'api/upload'
 const POST_ENDPOINT = 'api/products'
 

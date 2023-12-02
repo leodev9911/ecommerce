@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const APIS_URL = 'http://localhost:1337/api'
-const GET_PRODUCTS = '/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
+const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
+const GET_PRODUCTS = 'api/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
 
 export function useProducts (setProducts) {
   const [needToRefresh, setNeedToRefresh] = useState(false)

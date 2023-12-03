@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { AppContext } from '../context/AppContext'
 import { useForms } from './useForms'
 
 const AuthContext = createContext()
@@ -15,7 +14,6 @@ export function AuthProvider ({ children }) {
     }
   }, [])
 
-  const { setOpenDropdownMenu, setOpenMobileMenu } = useContext(AppContext)
   const [user, setUser] = useState(null)
   const [formData, setFormData] = useState({
     email: {
@@ -111,8 +109,6 @@ export function AuthProvider ({ children }) {
   const handleLogOut = () => {
     window.localStorage.removeItem('loggedUserEcommerce')
     setUser(null)
-    setOpenDropdownMenu(false)
-    setOpenMobileMenu(false)
   }
 
   const auth = {

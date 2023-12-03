@@ -1,9 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
 import './MobileMenuContainer.css'
+import { useMenusActions } from '../hooks/useMenuActions'
 
 export const MobileMenuContainer = () => {
   const { user, handleLogOut } = useAuth()
+  const { closeAllMenus } = useMenusActions()
   const locaction = useLocation().pathname
 
   return (
@@ -22,9 +24,28 @@ export const MobileMenuContainer = () => {
       <ul className='third-list__container'>
         {user && <li className='email-text'>{user.email}</li>}
         {user === null
-          ? <li><Link to='/Login' className='green-text'>Log in</Link></li>
-          : <li><button className='red-text' onClick={handleLogOut}>Sign out</button></li>}
-        {user?.role === 'admin' && <li><Link to={locaction === '/' ? '/Dashboard/Products' : '/'} className='green-text'>{locaction === '/' ? 'Dashboard' : 'Home'}</Link></li>}
+          ? <li><Link to='/Login' className='green-text' onClick={closeAllMenus}>Log in</Link></li>
+          : <li>
+              <button
+                className='red-text'
+                onClick={() => {
+                  handleLogOut()
+                  closeAllMenus()
+                }}
+              >
+                Sign out
+              </button>
+            </li>}
+        {user?.role === 'admin' &&
+          <li>
+            <Link
+              to={locaction === '/' ? '/Dashboard/Products' : '/'}
+              onClick={closeAllMenus}
+              className='green-text'
+            >
+              {locaction === '/' ? 'Dashboard' : 'Home'}
+            </Link>
+          </li>}
       </ul>
     </section>
   )

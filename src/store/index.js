@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cartSlice from './cart/slice'
 import { toast } from 'sonner'
+import menusSlice from './menus/slice'
 
 const persistanceLocalStorageMiddleware = (store) => (next) => (action) => {
   next(action)
@@ -17,7 +18,8 @@ const addToCartMiddleware = (store) => (next) => (action) => {
 
 export const store = configureStore({
   reducer: {
-    cart: cartSlice
+    cart: cartSlice,
+    menus: menusSlice
   },
   middleware: [persistanceLocalStorageMiddleware, addToCartMiddleware]
 })

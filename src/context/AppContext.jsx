@@ -1,6 +1,6 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext } from 'react'
 import { useProducts } from '../hooks/useProducts'
-import { MenusContext } from './MenusContext'
+import { useMenusActions } from '../hooks/useMenuActions'
 
 const AppContext = createContext()
 
@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
   const { setNeedToRefresh } = useProducts(setProducts, setLoading)
   const [cart, setCart] = useState([])
   const [productDetail, setProductDetail] = useState(null)
-  const { handleProductDetail } = useContext(MenusContext)
+  const { handleProductDetail } = useMenusActions()
 
   const showProductDetail = (id) => {
     const productsDetail = [...products]

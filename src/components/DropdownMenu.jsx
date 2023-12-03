@@ -1,8 +1,10 @@
 import { useAuth } from '../hooks/auth'
+import { useMenusActions } from '../hooks/useMenuActions'
 import './DropdownMenu.css'
 
 export const DropdownMenu = () => {
   const { handleLogOut } = useAuth()
+  const { closeAllMenus } = useMenusActions()
 
   return (
     <div id='dropdown-menu' className='dropdown-menu__container inactive'>
@@ -12,7 +14,10 @@ export const DropdownMenu = () => {
         <li>
           <button
             className='red-button'
-            onClick={handleLogOut}
+            onClick={() => {
+              handleLogOut()
+              closeAllMenus()
+            }}
           >
             Sign out
           </button>

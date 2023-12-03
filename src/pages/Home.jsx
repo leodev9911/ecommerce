@@ -9,12 +9,12 @@ import { ShoppingCartProductCard } from '../components/ShoppingCartProductCard'
 import { TotalCardShoppingCart } from '../components/TotalCardShoppingCart'
 import { MobileMenuContainer } from '../containers/MobileMenuContainer'
 import { AppContext } from '../context/AppContext'
-import { MenusContext } from '../context/MenusContext'
 import CategoryFilters from '../components/CategoryFilter'
 import { useFilters } from '../hooks/useFilters'
 import { useAppSelector } from '../hooks/useStore'
 import { Toaster } from 'sonner'
 import ProductCardLoading from '../components/ProductCardLoading'
+import { useMenusActions } from '../hooks/useMenuActions'
 
 export const Home = () => {
   const {
@@ -25,12 +25,12 @@ export const Home = () => {
   } = useContext(AppContext)
 
   const cart = useAppSelector(state => state.cart)
+  const menus = useAppSelector(state => state.menus)
 
   const {
-    handleProductDetail,
     handleShoppingCart,
-    menus
-  } = useContext(MenusContext)
+    handleProductDetail
+  } = useMenusActions()
 
   const { filteredProducts, handleOnChangeFilter } = useFilters(products)
 

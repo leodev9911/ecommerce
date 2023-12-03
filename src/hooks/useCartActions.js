@@ -12,5 +12,8 @@ export const useCartActions = () => {
     dispatch(deletefromCart(id))
   }
 
-  return { handleAddToCart, handleDeleteProductFromCart }
+  return {
+    handleAddToCart,
+    handleDeleteProductFromCart
+  }
 }

@@ -5,8 +5,7 @@ import shape from '../assets/icons/shape.svg'
 import { useAuth } from '../hooks/auth'
 import { Logo } from './Logo'
 import { Link, useLocation } from 'react-router-dom'
-import { useContext } from 'react'
-import { MenusContext } from '../context/MenusContext'
+import { useMenusActions } from '../hooks/useMenuActions'
 
 const classN = 'logo-nav__container'
 
@@ -14,11 +13,14 @@ export const Header = ({
   cart
 }) => {
   const { user } = useAuth()
+
   const {
     handleShoppingCart,
     handleDropdownMenu,
-    handleMobileMenu
-  } = useContext(MenusContext)
+    handleMobileMenu,
+    closeAllMenus
+  } = useMenusActions()
+
   const locaction = useLocation().pathname
 
   return (
@@ -45,6 +47,7 @@ export const Header = ({
             <Link
               className='dashboard-link'
               to={locaction === '/' ? '/Dashboard/Products' : '/'}
+              onClick={closeAllMenus}
             >
               {locaction === '/' ? 'Dashboard' : 'Home'}
             </Link>}
@@ -52,7 +55,9 @@ export const Header = ({
         {user?.role !== 'admin' &&
           <li
             className='shop-car__container'
-            onClick={() => handleShoppingCart()}
+            onClick={() => {
+              handleShoppingCart()
+            }}
           >
             <img src={shape} alt='Cart icon' />
             {cart?.length > 0 ? <span>{cart.length}</span> : null}

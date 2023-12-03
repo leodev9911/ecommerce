@@ -1,3 +1,6 @@
+header {
+    padding: 0 30px;
+}
 .nav__container {
     display: grid;
     align-items: center;
@@ -5,9 +8,6 @@
     grid-template-columns: auto 1fr auto;
     height: 46px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
-}
-.file-icon__container {
-    padding-left: 20px;
 }
 .file-icon__container img {
     width: 23px;
@@ -22,9 +22,6 @@
 }
 .nav-left__container {
     display: none;
-}
-.nav-right__container {
-    padding-right: 19px;
 }
 .nav-right__container img {
     width: 23px;
@@ -63,7 +60,6 @@
         grid-template-columns: 145px 1fr auto;
         justify-items: end;
         height: 55px;
-        padding: 0px 0px 0px 50px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.046805);
     }
     .nav__container li {
@@ -79,9 +75,6 @@
         width: 145px;
         height: 30px;
         object-fit: cover;
-    }
-    .nav-right__container {
-        padding-right: 50px;
     }
     .nav-left__container {
         display: flex;

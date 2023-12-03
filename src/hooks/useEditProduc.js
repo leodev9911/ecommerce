@@ -4,9 +4,18 @@ const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
 // const UPLOAD_ENDPOINT = 'api/upload'
 const POST_ENDPOINT = 'api/products'
 
-export function useEditProduct (productToEdit, formData, setFormIsActive, setNeedToRefresh) {
+export function useEditProduct (
+  productToEdit,
+  formData,
+  setFormIsActive,
+  setNeedToRefresh,
+  setIsForEdit,
+  setCreateLoading
+) {
   const handleEditProduct = async (event) => {
     event.preventDefault()
+    setCreateLoading(true)
+
     axios.put(`${APIS_URL}${POST_ENDPOINT}/${productToEdit.id}`, {
       data: {
         title: formData.title,
@@ -43,7 +52,10 @@ export function useEditProduct (productToEdit, formData, setFormIsActive, setNee
             .then(() => {
               setNeedToRefresh(prev => !prev)
             })
-            .then(setFormIsActive(false))
+            .then(() => {
+              setFormIsActive(false)
+              setCreateLoading(false)
+            })
         }
       })
       .then(() => {
@@ -51,7 +63,11 @@ export function useEditProduct (productToEdit, formData, setFormIsActive, setNee
           setNeedToRefresh(prev => !prev)
         }
       })
-      .then(setFormIsActive(false))
+      .then(() => {
+        setFormIsActive(false)
+        setCreateLoading(false)
+        setIsForEdit(false)
+      })
   }
 
   return { handleEditProduct }

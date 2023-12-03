@@ -90,6 +90,10 @@
     gap: 6px;
 }
 @media(max-width: 1000px) {
+    .dashboard-products-header {
+        display: flex;
+        flex-direction: column;
+    }
     .dashboard-section {
         padding: 30px 0px 60px 0px;
     }
@@ -130,5 +134,21 @@
     }
     .products-table-row__section > div {
         height: 48px;
+    }
+}
+@media (max-width: 450px) {
+    .filters-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .select-container {
+        width: 100%;
+    }
+    .dashboard-products__category {
+        width: 100%;
+    }
+    .add-product__button {
+        width: 100%;
     }
 }

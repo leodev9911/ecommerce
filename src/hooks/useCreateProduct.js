@@ -4,9 +4,17 @@ const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
 const UPLOAD_ENDPOINT = 'api/upload'
 const POST_ENDPOINT = 'api/products'
 
-export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefresh) {
+export function useCreateProduct (
+  formData,
+  file,
+  setFormIsActive,
+  setNeedToRefresh,
+  setCreateLoading
+) {
   const handleCreateProduct = async (event) => {
     event.preventDefault()
+    setCreateLoading(true)
+
     const formData12 = new FormData()
     formData12.append('files', file[0])
 
@@ -31,15 +39,15 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
                   categories: [Number(formData.productCategorie)]
                 }
               })
-                .then(response => {
+                .then(() => {
                   if (formData.productSubcategorie === '') {
-                    console.log(response)
                     setNeedToRefresh(prev => !prev)
                   }
                 })
-                .then(response => {
+                .then(() => {
                   if (formData.productSubcategorie === '') {
                     setFormIsActive(false)
+                    setCreateLoading(false)
                   }
                 })
             }
@@ -49,11 +57,13 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
                   subcategories: [Number(formData.productSubcategorie)]
                 }
               })
-                .then(response => {
-                  console.log(response)
+                .then(() => {
                   setNeedToRefresh(prev => !prev)
                 })
-                .then(setFormIsActive(false))
+                .then(() => {
+                  setFormIsActive(false)
+                  setCreateLoading(false)
+                })
             }
           })
           .then(() => {
@@ -61,13 +71,15 @@ export function useCreateProduct (formData, file, setFormIsActive, setNeedToRefr
               setNeedToRefresh(prev => !prev)
             }
           })
-          .then(setFormIsActive(false))
+          .then(() => {
+            setFormIsActive(false)
+            setCreateLoading(false)
+          })
           .catch((error) => console.error(error))
       })
       .catch((error) => {
         console.error(error)
       })
-    setNeedToRefresh(prev => !prev)
   }
 
   return { handleCreateProduct }

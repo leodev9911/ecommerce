@@ -6,7 +6,8 @@ const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([])
-  const { setNeedToRefresh } = useProducts(setProducts)
+  const [loading, setLoading] = useState(true)
+  const { setNeedToRefresh } = useProducts(setProducts, setLoading)
   const [cart, setCart] = useState([])
   const [productDetail, setProductDetail] = useState(null)
   const { handleProductDetail } = useContext(MenusContext)
@@ -29,7 +30,8 @@ const AppProvider = ({ children }) => {
         products,
         productDetail,
         showProductDetail,
-        setNeedToRefresh
+        setNeedToRefresh,
+        loading
       }}
     >
       {children}

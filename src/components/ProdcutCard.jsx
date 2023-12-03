@@ -8,17 +8,12 @@ export const ProductCard = ({
   image,
   price,
   product,
-  // handleAddToCart,
   showProductDetail
 }) => {
-  // const handleClick = item => {
-  //   handleAddToCart(item)
-  // }
-
   const { handleAddToCart } = useCartActions()
 
   return (
-    <article className='card' key={id}>
+    <article className='card'>
       <img
         src={image}
         alt={title}

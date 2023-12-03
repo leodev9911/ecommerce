@@ -14,16 +14,17 @@ import CategoryFilters from '../components/CategoryFilter'
 import { useFilters } from '../hooks/useFilters'
 import { useAppSelector } from '../hooks/useStore'
 import { Toaster } from 'sonner'
+import ProductCardLoading from '../components/ProductCardLoading'
 
 export const Home = () => {
   const {
     showProductDetail,
     productDetail,
-    products
+    products,
+    loading
   } = useContext(AppContext)
 
   const cart = useAppSelector(state => state.cart)
-  console.log(cart)
 
   const {
     handleProductDetail,
@@ -46,6 +47,10 @@ export const Home = () => {
           handleOnChangeFilter={handleOnChangeFilter}
         />
         <ProductCardSection>
+          {loading && <ProductCardLoading />}
+          {loading && <ProductCardLoading />}
+          {loading && <ProductCardLoading />}
+          {loading && <ProductCardLoading />}
           {filteredProducts.map(product => (
             <ProductCard
               key={product?.id}

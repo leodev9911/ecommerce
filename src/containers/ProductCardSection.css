@@ -1,17 +1,8 @@
 .card__container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 140px);
     justify-content: center;
-    column-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    column-gap: 20px;
     row-gap: 30px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
-@media (min-width: 720px) {
-    .card__container {
-        grid-template-columns: repeat(auto-fill, 240px);
-        column-gap: 20px;
-        row-gap: 30px;
-        padding: 0px 0px 0px 0px;
-    }
+    padding: 0px 0px 0px 0px;
 }

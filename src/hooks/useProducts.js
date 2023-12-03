@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 const APIS_URL = 'https://strapi-ecommerce-pgvd.onrender.com/'
 const GET_PRODUCTS = 'api/products?populate[image][fields][0]=url&populate[categories][fields][0]=name&populate[subcategories][fields][0]=name'
 
-export function useProducts (setProducts) {
+export function useProducts (setProducts, setLoading) {
   const [needToRefresh, setNeedToRefresh] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       try {
         const res = await fetch(APIS_URL + GET_PRODUCTS)
@@ -36,6 +37,7 @@ export function useProducts (setProducts) {
           })
 
           setProducts(productsArray)
+          setLoading(false)
         }
       } catch (error) {
         console.error(error)

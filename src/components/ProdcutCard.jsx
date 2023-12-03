@@ -1,5 +1,6 @@
 import './ProductCard.css'
 import iconAddToCart from '../assets/icons/bt_add_to_cart.svg'
+import { useCartActions } from '../hooks/useCartActions'
 
 export const ProductCard = ({
   title,
@@ -7,12 +8,14 @@ export const ProductCard = ({
   image,
   price,
   product,
-  handleAddToCart,
+  // handleAddToCart,
   showProductDetail
 }) => {
-  const handleClick = item => {
-    handleAddToCart(item)
-  }
+  // const handleClick = item => {
+  //   handleAddToCart(item)
+  // }
+
+  const { handleAddToCart } = useCartActions()
 
   return (
     <article className='card' key={id}>
@@ -26,7 +29,7 @@ export const ProductCard = ({
           <p className='roboto-text'>${price}</p>
           <p>{title}</p>
         </div>
-        <figure className='car-icon' onClick={() => handleClick(product)}>
+        <figure className='car-icon' onClick={() => handleAddToCart(product)}>
           <img src={iconAddToCart} alt='Add to cart icon' />
         </figure>
       </div>

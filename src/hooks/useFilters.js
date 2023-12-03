@@ -16,8 +16,6 @@ export function useFilters (products) {
     })
   }
 
-  console.log(products)
-
   const filterProducts = (products) => {
     return products.filter(product => {
       if (filters.category !== 'All') {

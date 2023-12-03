@@ -65,14 +65,12 @@ export function AuthProvider ({ children }) {
         })
       })
       const data = await res.json()
-      console.log(data)
 
       const getUser = await fetch('https://api.escuelajs.co/api/v1/auth/profile', {
         headers: {
           'Authorization': `Bearer ${data.access_token}`
         }
       })
-      console.log(getUser)
       if (getUser.status === 200) {
         const userFromApi = await getUser.json()
 

@@ -1,29 +1,31 @@
 import './ShoppingCartProductCard.css'
 import closeIcon from '../assets/icons/close-icon.svg'
+import { useCartActions } from '../hooks/useCartActions'
 
 export const ShoppingCartProductCard = ({
-  cart,
-  deleteProductCart
+  cart
 }) => {
+  const { handleDeleteProductFromCart } = useCartActions()
+
   return (
-    cart.map((car, index) => (
+    cart.map((product, index) => (
       <article
         className='card-container-aside'
         key={index}
       >
         <div className='left-card__container'>
           <figure>
-            <img src={car?.image} alt={car?.title} />
+            <img src={product?.image} alt={product?.title} />
           </figure>
-          <span className='articles'>{car?.title}</span>
+          <span className='articles'>{product?.title}</span>
         </div>
         <div className='right-card__container'>
-          <p>${car?.price}</p>
+          <p>${product?.price}</p>
           <figure className='close-icon'>
             <img
               src={closeIcon}
               alt='A close icon'
-              onClick={() => deleteProductCart(index)}
+              onClick={() => handleDeleteProductFromCart(product.id)}
             />
           </figure>
         </div>

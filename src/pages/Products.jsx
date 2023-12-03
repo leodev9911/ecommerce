@@ -18,9 +18,8 @@ export default function DashboardProducts () {
   const { categories, subcategories } = useCategories()
   const { products, setNeedToRefresh } = useContext(AppContext)
   const { actualWidth } = useSizes()
-  const { filters, filteredProducts, handleOnChangeFilter } = useFilters(products)
+  const { filteredProducts, handleOnChangeFilter } = useFilters(products)
   const { handleDelete } = useDeleteProduct(setNeedToRefresh)
-  console.log(filters)
 
   const handleEditProduct = (id) => {
     setProductToEdit(filteredProducts.find(product => product.id === id))

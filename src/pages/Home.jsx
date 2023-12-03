@@ -12,15 +12,18 @@ import { AppContext } from '../context/AppContext'
 import { MenusContext } from '../context/MenusContext'
 import CategoryFilters from '../components/CategoryFilter'
 import { useFilters } from '../hooks/useFilters'
+import { useAppSelector } from '../hooks/useStore'
+import { Toaster } from 'sonner'
+
 export const Home = () => {
   const {
-    handleAddToCart,
     showProductDetail,
     productDetail,
-    cart,
-    deleteProductCart,
     products
   } = useContext(AppContext)
+
+  const cart = useAppSelector(state => state.cart)
+  console.log(cart)
 
   const {
     handleProductDetail,
@@ -51,18 +54,21 @@ export const Home = () => {
               image={product?.image}
               price={product?.price}
               product={product}
-              handleAddToCart={handleAddToCart}
               showProductDetail={showProductDetail}
             />
           ))}
-          {menus.openProductDetail ? <ProductDetail handleProductDetail={handleProductDetail} productDetail={productDetail} /> : null}
+          {menus.openProductDetail
+            ? <ProductDetail
+                handleProductDetail={handleProductDetail}
+                productDetail={productDetail}
+              />
+            : null}
           {menus.openDropdownMenu ? <DropdownMenu /> : null}
           {menus.openShoppingCart
             ? (
               <ShoppingCartAside handleShoppingCart={handleShoppingCart}>
                 <ShoppingCartProductCard
                   cart={cart}
-                  deleteProductCart={deleteProductCart}
                 />
                 <TotalCardShoppingCart
                   cart={cart}
@@ -71,6 +77,7 @@ export const Home = () => {
               )
             : null}
         </ProductCardSection>
+        <Toaster richColors />
       </main>
     </section>
   )

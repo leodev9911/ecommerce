@@ -11,16 +11,6 @@ const AppProvider = ({ children }) => {
   const [productDetail, setProductDetail] = useState(null)
   const { handleProductDetail } = useContext(MenusContext)
 
-  const handleAddToCart = (payload) => {
-    const newCart = [...cart, payload]
-    setCart(newCart)
-  }
-  const deleteProductCart = (index) => {
-    const deleteProductCart = [...cart]
-    deleteProductCart.splice(index, 1)
-    setCart(deleteProductCart)
-  }
-
   const showProductDetail = (id) => {
     const productsDetail = [...products]
     handleProductDetail()
@@ -35,10 +25,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         setCart,
-        handleAddToCart,
         cart,
         products,
-        deleteProductCart,
         productDetail,
         showProductDetail,
         setNeedToRefresh
